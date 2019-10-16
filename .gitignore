@@ -29,3 +29,13 @@ hs_err_pid*
 
 # dependencies
 /node_modules
+
+### Mac Files ###
+.DS_Store
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*/target/**
