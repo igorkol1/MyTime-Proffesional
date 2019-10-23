@@ -23,7 +23,7 @@ public class UserService {
     public List<UserDto> getAllUsers() {
         return userRepository.findAll()
                 .stream()
-                .map(this::mapToUserDto)
+                .map(UserService::mapToUserDto)
                 .collect(Collectors.toList());
     }
 
@@ -40,7 +40,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    private UserDto mapToUserDto(User user) {
+    public static UserDto mapToUserDto(User user) {
         return new UserDto(user.getEmail(), user.getManager(), user.getActive());
     }
 

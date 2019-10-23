@@ -23,7 +23,7 @@ public class ProjectService {
     public List<ProjectDto> getAllProjects() {
         return projectRepository.findAll()
                 .stream()
-                .map(this::mapToProjectDto)
+                .map(ProjectService::mapToProjectDto)
                 .collect(Collectors.toList());
     }
 
@@ -40,7 +40,7 @@ public class ProjectService {
         return projectRepository.save(project);
     }
 
-    private ProjectDto mapToProjectDto(Project project) {
+    public static ProjectDto mapToProjectDto(Project project) {
         return new ProjectDto(project.getName(), project.getActive());
     }
 
