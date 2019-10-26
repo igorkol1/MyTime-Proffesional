@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.igorkol.dtos.UserDto;
+import pl.igorkol.dtos.responses.LoginResponse;
 import pl.igorkol.entities.User;
 import pl.igorkol.services.UserService;
 
@@ -62,13 +63,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public boolean login(@RequestBody User user) {
-        Optional<User> userOptional = userService.getUser(user.getEmail());
-        if (userOptional.isPresent()) {
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
-            return encoder.matches(user.getPassword(), userOptional.get().getPassword());
-        }
-        return false;
+    public LoginResponse login(@RequestBody User user) {
+        return userService.authorizeUser(user);
     }
 
 }

@@ -6,8 +6,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.igorkol.dtos.UserDto;
+import pl.igorkol.dtos.responses.LoginResponse;
 import pl.igorkol.entities.User;
 import pl.igorkol.repositories.UserRepository;
 
@@ -64,6 +66,20 @@ public class UserService implements UserDetailsService {
             return true;
         }
         return false;
+    }
+
+    public LoginResponse authorizeUser(User unauthorizedUser){
+        LoginResponse loginResponse = new LoginResponse(unauthorizedUser.getEmail());
+        Optional<User> userOptional = userRepository.findByEmail(unauthorizedUser.getEmail());
+        if(userOptional.isPresent()){
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            User user = userOptional.get();
+            if(encoder.matches(unauthorizedUser.getPassword(), user.getPassword())){
+                loginResponse.setAuthorize(true);
+                loginResponse.setManager(user.getManager());
+            }
+        }
+        return loginResponse;
     }
 
     @Override
