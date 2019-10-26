@@ -3,6 +3,7 @@ package pl.igorkol.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import pl.igorkol.services.UserService;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -35,7 +37,7 @@ public class UserController {
 
     @GetMapping("/{userEmail}")
     public ResponseEntity<UserDto> getUser(@PathVariable String userEmail) {
-        UserDto userDto = userService.getUser(userEmail);
+        UserDto userDto = userService.getUserDto(userEmail);
         if (userDto != null) {
             return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
         } else {
@@ -57,6 +59,16 @@ public class UserController {
     public ResponseEntity<Void> deactivateUser(@PathVariable String userEmail) {
         boolean status = userService.deactivateUser(userEmail);
         return status ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
+    }
+
+    @PostMapping("/login")
+    public boolean login(@RequestBody User user) {
+        Optional<User> userOptional = userService.getUser(user.getEmail());
+        if (userOptional.isPresent()) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
+            return encoder.matches(user.getPassword(), userOptional.get().getPassword());
+        }
+        return false;
     }
 
 }

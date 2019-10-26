@@ -1,8 +1,8 @@
-insert into users(email, is_active, is_manager, password) values ('test1@test.pl',true,false,'password');
-insert into users(email, is_active, is_manager, password) values ('test2@test.pl',true,false,'password');
-insert into users(email, is_active, is_manager, password) values ('test3@test.pl',false,false,'password');
-insert into users(email, is_active, is_manager, password) values ('test4@test.pl',true,true,'password');
-insert into users(email, is_active, is_manager, password) values ('test5@test.pl',true,true,'password');
+insert into users(email, is_active, is_manager, password) values ('test1@test.pl',true,false,'$2a$10$ZNyiFuDDmzp9PQ4L/XGxkelPA1yMeuXBER5T7lSpWiwGYHQ33Jqda');
+insert into users(email, is_active, is_manager, password) values ('test2@test.pl',true,false,'$2a$10$ZNyiFuDDmzp9PQ4L/XGxkelPA1yMeuXBER5T7lSpWiwGYHQ33Jqda');
+insert into users(email, is_active, is_manager, password) values ('test3@test.pl',false,false,'$2a$10$ZNyiFuDDmzp9PQ4L/XGxkelPA1yMeuXBER5T7lSpWiwGYHQ33Jqda');
+insert into users(email, is_active, is_manager, password) values ('test4@test.pl',true,true,'$2a$10$ZNyiFuDDmzp9PQ4L/XGxkelPA1yMeuXBER5T7lSpWiwGYHQ33Jqda');
+insert into users(email, is_active, is_manager, password) values ('test5@test.pl',true,true,'$2a$10$ZNyiFuDDmzp9PQ4L/XGxkelPA1yMeuXBER5T7lSpWiwGYHQ33Jqda');
 
 insert into projects(is_active, name) values (true,'Test Project 1');
 insert into projects(is_active, name) values (true,'Test Project 2');

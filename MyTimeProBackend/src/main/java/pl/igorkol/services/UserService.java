@@ -1,17 +1,24 @@
 package pl.igorkol.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.igorkol.dtos.UserDto;
 import pl.igorkol.entities.User;
 import pl.igorkol.repositories.UserRepository;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private UserRepository userRepository;
 
@@ -27,7 +34,11 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserDto getUser(String userEmail) {
+    public Optional<User> getUser(String userEmail) {
+        return userRepository.findByEmail(userEmail);
+    }
+
+    public UserDto getUserDto(String userEmail) {
         User user = userRepository.findByEmail(userEmail).orElse(null);
         if (user != null) {
             return mapToUserDto(user);
@@ -55,4 +66,23 @@ public class UserService {
         return false;
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
+        Optional<User> userOptional = userRepository.findByEmail(userEmail);
+        if (!userOptional.isPresent()) {
+            throw new UsernameNotFoundException("Invalid username or password.");
+        }
+        User user = userOptional.get();
+        return new org.springframework.security.core.userdetails.User(user.getEmail(),
+                user.getPassword(), getAuthorities(user));
+    }
+
+    private Collection<? extends GrantedAuthority> getAuthorities(User user) {
+        List<SimpleGrantedAuthority> temp = new ArrayList<>();
+        temp.add(new SimpleGrantedAuthority("USER"));
+        if (user.getManager()) {
+            temp.add(new SimpleGrantedAuthority("MANAGER"));
+        }
+        return temp;
+    }
 }
