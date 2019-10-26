@@ -1,0 +1,24 @@
+<p>Login</p>
+<div>
+
+  Email: <input [(ngModel)]="user.email" type="email"><br>
+  Password <input [(ngModel)]="user.password" type="password"><br>
+  <button (click)="handleLogin()">Submit</button>
+  <br>
+
+
+  <div *ngIf="!authorizationService.isLoading else loading"></div>
+  Authorization status:<br>
+  {{authorizationService.authorizationStatus.email}}<br>
+  {{authorizationService.authorizationStatus.authorize}}<br>
+  {{authorizationService.authorizationStatus.manager}}<br>
+
+
+  <button (click)="handleDebug()">Debug</button>
+  <br>
+
+</div>
+
+<ng-template #loading>
+  Wait for authorization
+</ng-template>
