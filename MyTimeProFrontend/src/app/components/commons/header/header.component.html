@@ -1,16 +1,24 @@
 <div class="card">
   <div class="card-body">
     MyTime Pro
-    <div *ngIf="authorizationService.authorizationStatus.authorize">
-      <button type="submit" class="btn btn-light btn-sm" (click)="handleLogout()" id="logoutButton">Logout</button>
-      <div *ngIf="authorizationService.authorizationStatus.manager">
-        Manager: {{authorizationService.authorizationStatus.email}}
-      </div>
-      <div *ngIf="!authorizationService.authorizationStatus.manager">
-        User: {{authorizationService.authorizationStatus.email}}
-      </div>
+    <div id="userCard" *ngIf="authorizationService.authorizationStatus.authorize">
+      <i class="fas fa-user"
+         placement="left"
+         [closeDelay]="2000"
+         [ngbPopover]="test"
+         triggers="mouseenter:mouseleave"></i>
     </div>
   </div>
+
+  <ng-template #test>
+    <div *ngIf="authorizationService.authorizationStatus.manager">
+      Manager: {{authorizationService.authorizationStatus.email}}
+    </div>
+    <div *ngIf="!authorizationService.authorizationStatus.manager">
+      User: {{authorizationService.authorizationStatus.email}}
+    </div>
+    <a (click)="handleLogout()">Logout</a>
+  </ng-template>
 
 
 </div>
