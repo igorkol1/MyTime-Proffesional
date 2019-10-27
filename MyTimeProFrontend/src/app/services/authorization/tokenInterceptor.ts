@@ -25,9 +25,7 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(map(event => {
         return event;
       }), catchError(err => {
-        if (this.authorizationService.getToken() === null) {
-          this.handleUnauthorizedError();
-        }
+        this.handleUnauthorizedError();
         return throwError(err);
       })
     );
