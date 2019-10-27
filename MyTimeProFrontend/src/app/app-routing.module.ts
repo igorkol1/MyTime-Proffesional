@@ -6,6 +6,7 @@ import {UserDashboardComponent} from './components/user/user-dashboard/user-dash
 import {LogoutComponent} from './components/commons/logout/logout.component';
 import {UserListComponent} from './components/manager/user-list/user-list.component';
 import {ProjectListComponent} from './components/manager/project-list/project-list.component';
+import {ManagerReportDashboardComponent} from './components/manager/manager-report-dashboard/manager-report-dashboard.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'manager/dashboard', component: ManagerDashboardComponent},
   {path: 'manager/user/list', component: UserListComponent},
   {path: 'manager/project/list', component: ProjectListComponent},
+  {path: 'manager/report', component: ManagerReportDashboardComponent},
   {path: 'user/dashboard', component: UserDashboardComponent},
   {path: 'logout', component: LogoutComponent}
 ];

@@ -15,6 +15,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { UserListComponent } from './components/manager/user-list/user-list.component';
 import { ProjectListComponent } from './components/manager/project-list/project-list.component';
 import {TokenInterceptor} from './services/authorization/tokenInterceptor';
+import { ManagerReportDashboardComponent } from './components/manager/manager-report-dashboard/manager-report-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {TokenInterceptor} from './services/authorization/tokenInterceptor';
     FooterComponent,
     LogoutComponent,
     UserListComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    ManagerReportDashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -23,4 +23,8 @@ export class ManagerDashboardComponent implements OnInit {
   navigateToProjectList() {
     this.router.navigate(['manager/project/list']);
   }
+
+  navigateToReports() {
+    this.router.navigate(['manager/report']);
+  }
 }
