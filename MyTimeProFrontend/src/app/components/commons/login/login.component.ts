@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
     this.authorizationService.authorize(this.user);
   }
 
-  handleDebug() {
-    debugger;
+  isInvalid() {
+    if (this.authorizationService.isInvalid) {
+      return 'is-invalid';
+    }
   }
 }

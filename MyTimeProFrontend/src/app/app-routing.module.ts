@@ -8,9 +8,9 @@ import {LogoutComponent} from './components/commons/logout/logout.component';
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
-  {path: '/manager/dashboard', component: ManagerDashboardComponent},
-  {path: '/user/dashboard', component: UserDashboardComponent},
-  {path: '/logout', component: LogoutComponent}
+  {path: 'manager/dashboard', component: ManagerDashboardComponent},
+  {path: 'user/dashboard', component: UserDashboardComponent},
+  {path: 'logout', component: LogoutComponent}
   ];
 
 @NgModule({

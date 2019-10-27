@@ -1,21 +1,23 @@
-<p>Login</p>
-<div>
+<div class="row">
+  <div class="col-md-4 offset-md-4">
 
-  Email: <input [(ngModel)]="user.email" type="email"><br>
-  Password <input [(ngModel)]="user.password" type="password"><br>
-  <button (click)="handleLogin()">Submit</button>
-  <br>
+    <div class="card" align="center" id="loginCard">
+      <div class="card-title">
+        Welcome
+      </div>
 
+      <form>
+        <div class="form-group">
+          <input [(ngModel)]="user.email" [ngClass]="isInvalid()" name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="user.password" [ngClass]="isInvalid()" name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-light" (click)="handleLogin()">Login</button>
+      </form>
+    </div>
 
-  <div *ngIf="!authorizationService.isLoading else loading"></div>
-  Authorization status:<br>
-  {{authorizationService.authorizationStatus.email}}<br>
-  {{authorizationService.authorizationStatus.authorize}}<br>
-  {{authorizationService.authorizationStatus.manager}}<br>
-
-
-  <button (click)="handleDebug()">Debug</button>
-  <br>
+  </div>
 
 </div>
 
