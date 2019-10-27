@@ -36,20 +36,4 @@ export class UserService {
       }
     );
   }
-
-  /*
-
-    getActivities() {
-    this.activityService.getAllActivitiesPerDate(this.queryDate).subscribe(
-      respone => {
-        console.log(respone);
-        this.activities = respone;
-      },
-      error => {
-        this.toast.showToast(ToastType.ERROR, 'Fail to get activities');
-        console.warn(error);
-      }
-    );
-  }
-   */
 }
