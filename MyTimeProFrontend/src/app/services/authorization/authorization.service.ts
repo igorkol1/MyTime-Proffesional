@@ -1,17 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {User} from '../models/user.model';
-import {Observable} from 'rxjs';
-import {LoginResponseModel} from '../models/responses/loginResponse.model';
-import {API_URL} from '../app.constans';
+import {User} from '../../models/user.model';
+import {LoginResponseModel} from '../../models/responses/loginResponse.model';
+import {API_URL} from '../../app.constans';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizationService {
 
-  header: HttpHeaders;
   authorizationStatus: LoginResponseModel = new LoginResponseModel('');
   isInvalid = false;
   isLoading = false;
@@ -47,6 +45,9 @@ export class AuthorizationService {
       });
   }
 
+  getToken() {
+    return sessionStorage.getItem('Authorization');
+  }
 
   logout() {
     sessionStorage.removeItem('Authorization');

@@ -1,0 +1,39 @@
+<div class="card listCard">
+
+  <div>
+    <div>
+      <i class="fas fa-folder-plus" id="addProject"></i>
+    </div>
+    <div >
+      <i class="fas fa-sync" id="refreshProject"></i>
+    </div>
+  </div>
+
+  <div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Is Active</th>
+        <th scope="col">Options</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let project of projectService.projectList; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{project.name}}
+        </td>
+        <td>
+          {{project.active}}
+        </td>
+        <td>
+          Options
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

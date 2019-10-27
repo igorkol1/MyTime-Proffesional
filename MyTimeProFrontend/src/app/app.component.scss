@@ -1,0 +1,22 @@
+:host ::ng-deep .menuCard{
+  width: 300px;
+  margin: 20px;
+  height: 100px;
+  display: inline-block;
+}
+
+:host ::ng-deep .listCard{
+  margin: 25px;
+  padding: 20px;
+}
+
+:host ::ng-deep .menuCard:hover{
+  background-color: rgba(0,0,0,.125);
+}
+
+:host ::ng-deep .menuContent{
+  width: 300px;
+  margin: 20px;
+  height: 100px;
+  display: inline-block;
+}
