@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthorizationService} from '../../services/authorization.service';
-import {User} from '../../models/user.model';
+import {AuthorizationService} from '../../../services/authorization.service';
+import {User} from '../../../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
     this.authorizationService.authorize(this.user);
   }
 
-  handleDebug() {
-    debugger;
+  isInvalid() {
+    if (this.authorizationService.isInvalid) {
+      return 'is-invalid';
+    }
   }
 }
