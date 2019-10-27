@@ -4,14 +4,17 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './components/commons/login/login.component';
-import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ManagerDashboardComponent } from './components/manager/manager-dashboard/manager-dashboard.component';
 import { UserDashboardComponent } from './components/user/user-dashboard/user-dashboard.component';
 import { HeaderComponent } from './components/commons/header/header.component';
 import { FooterComponent } from './components/commons/footer/footer.component';
 import { LogoutComponent } from './components/commons/logout/logout.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { UserListComponent } from './components/manager/user-list/user-list.component';
+import { ProjectListComponent } from './components/manager/project-list/project-list.component';
+import {TokenInterceptor} from './services/authorization/tokenInterceptor';
 
 @NgModule({
   declarations: [
@@ -21,16 +24,23 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     UserDashboardComponent,
     HeaderComponent,
     FooterComponent,
-    LogoutComponent
+    LogoutComponent,
+    UserListComponent,
+    ProjectListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

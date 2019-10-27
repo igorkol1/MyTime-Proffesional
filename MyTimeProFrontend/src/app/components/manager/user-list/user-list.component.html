@@ -1,0 +1,48 @@
+
+<div class="card listCard">
+
+  <div>
+    <div>
+      <i class="fas fa-user-plus" id="addUser"></i>
+    </div>
+    <div >
+      <i class="fas fa-sync" id="refresh"></i>
+    </div>
+  </div>
+
+  <div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Email</th>
+        <th scope="col">Is Manager</th>
+        <th scope="col">Is Active</th>
+        <th scope="col">Options</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of userService.userList; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{user.email}}
+        </td>
+        <td>
+          {{user.manager}}
+        </td>
+        <td>
+          {{user.active}}
+        </td>
+        <td>
+          Option
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+
+
