@@ -11,6 +11,7 @@ import { UserDashboardComponent } from './components/user/user-dashboard/user-da
 import { HeaderComponent } from './components/commons/header/header.component';
 import { FooterComponent } from './components/commons/footer/footer.component';
 import { LogoutComponent } from './components/commons/logout/logout.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LogoutComponent } from './components/commons/logout/logout.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
