@@ -50,11 +50,15 @@ public class UserService implements UserDetailsService {
     }
 
     public User saveUser(User user) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
+        user.setPassword(
+                encoder.encode(user.getPassword())
+        );
         return userRepository.save(user);
     }
 
     public static UserDto mapToUserDto(User user) {
-        return new UserDto(user.getEmail(), user.getManager(), user.getActive());
+        return new UserDto(user.getId(),user.getEmail(), user.getManager(), user.getActive());
     }
 
     public boolean deactivateUser(String userEmail) {
