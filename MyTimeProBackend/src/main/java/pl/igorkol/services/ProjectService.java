@@ -41,7 +41,7 @@ public class ProjectService {
     }
 
     public static ProjectDto mapToProjectDto(Project project) {
-        return new ProjectDto(project.getName(), project.getActive());
+        return new ProjectDto(project.getId(), project.getName(), project.getActive());
     }
 
 
