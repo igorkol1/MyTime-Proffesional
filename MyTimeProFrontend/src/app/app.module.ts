@@ -19,6 +19,7 @@ import { ManagerReportDashboardComponent } from './components/manager/manager-re
 import { NewUserFormComponent } from './components/manager/new-user-form/new-user-form.component';
 import { ActivitiesDashboardComponent } from './components/manager/activities-dashboard/activities-dashboard.component';
 import { ProjectFormComponent } from './components/manager/project-form/project-form.component';
+import { UserActivitiesDashboardComponent } from './components/user/user-activities-dashboard/user-activities-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProjectFormComponent } from './components/manager/project-form/project-
     ManagerReportDashboardComponent,
     NewUserFormComponent,
     ActivitiesDashboardComponent,
-    ProjectFormComponent
+    ProjectFormComponent,
+    UserActivitiesDashboardComponent
   ],
   entryComponents: [
     NewUserFormComponent,
