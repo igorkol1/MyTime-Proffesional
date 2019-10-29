@@ -15,6 +15,11 @@ export class NewUserFormComponent implements OnInit {
   @Input()
   user: User = new User();
 
+  @Input()
+  newUser: boolean = false;
+
+  changePassword: boolean;
+
   constructor(
     public activeModal: NgbActiveModal,
     private userService: UserService
@@ -25,6 +30,11 @@ export class NewUserFormComponent implements OnInit {
   }
 
   handleSave() {
+
+    if (!this.changePassword) {
+      this.user.password = '';
+    }
+
     this.userService.saveUser(this.user);
     this.activeModal.close();
   }

@@ -26,7 +26,8 @@ export class UserListComponent implements OnInit {
   }
 
   handleAddUser() {
-    this.modalService.open(NewUserFormComponent);
+    const modalRef = this.modalService.open(NewUserFormComponent);
+    modalRef.componentInstance.newUser = true;
   }
 
   handleEditUser(user: User) {

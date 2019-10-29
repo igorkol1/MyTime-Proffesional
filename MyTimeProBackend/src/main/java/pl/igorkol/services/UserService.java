@@ -50,10 +50,16 @@ public class UserService implements UserDetailsService {
     }
 
     public User saveUser(User user) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
-        user.setPassword(
-                encoder.encode(user.getPassword())
-        );
+        if(user.getPassword()!=null && user.getPassword().length()>0){
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
+            user.setPassword(
+                    encoder.encode(user.getPassword())
+            );
+        } else {
+            userRepository.findByEmail(user.getEmail()).ifPresent(existingUser -> {
+                user.setPassword(existingUser.getPassword());
+            });
+        }
         return userRepository.save(user);
     }
 
