@@ -38,4 +38,14 @@ export class ProjectService {
     );
   }
 
+  saveProject(project: Project) {
+    this.http.post(API_URL + 'project/save', project).subscribe(
+      response => {
+        this.refresh();
+      },
+      error => {
+        console.warn(error);
+      }
+    );
+  }
 }

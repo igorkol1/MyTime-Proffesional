@@ -2,10 +2,10 @@
 
   <div>
     <div>
-      <i class="fas fa-folder-plus" id="addProject"></i>
+      <i class="fas fa-folder-plus" id="addProject" (click)="handleAddProject()"></i>
     </div>
     <div >
-      <i class="fas fa-sync" id="refreshProject"></i>
+      <i class="fas fa-sync" id="refreshProject" (click)="handleRefresh()"></i>
     </div>
   </div>
 
@@ -20,8 +20,10 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let project of projectService.projectList; index as i">
-        <th scope="row">{{ i + 1 }}</th>
+      <tr *ngFor="let project of projectService.projectList">
+        <th>
+          {{project.id}}
+        </th>
         <td>
           {{project.name}}
         </td>
@@ -29,7 +31,7 @@
           {{project.active}}
         </td>
         <td>
-          Options
+          <i class="fas fa-folder-open" (click)="handleEditProject(project)"></i>
         </td>
       </tr>
       </tbody>
