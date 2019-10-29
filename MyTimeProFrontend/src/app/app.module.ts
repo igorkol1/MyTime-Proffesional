@@ -17,6 +17,7 @@ import { ProjectListComponent } from './components/manager/project-list/project-
 import {TokenInterceptor} from './services/authorization/tokenInterceptor';
 import { ManagerReportDashboardComponent } from './components/manager/manager-report-dashboard/manager-report-dashboard.component';
 import { NewUserFormComponent } from './components/manager/new-user-form/new-user-form.component';
+import { ActivitiesDashboardComponent } from './components/manager/activities-dashboard/activities-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NewUserFormComponent } from './components/manager/new-user-form/new-use
     UserListComponent,
     ProjectListComponent,
     ManagerReportDashboardComponent,
-    NewUserFormComponent
+    NewUserFormComponent,
+    ActivitiesDashboardComponent
   ],
   entryComponents: [
     NewUserFormComponent

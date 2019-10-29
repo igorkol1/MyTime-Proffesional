@@ -27,4 +27,8 @@ export class ManagerDashboardComponent implements OnInit {
   navigateToReports() {
     this.router.navigate(['manager/report']);
   }
+
+  navigateToActivities() {
+    this.router.navigate(['manager/activities']);
+  }
 }
