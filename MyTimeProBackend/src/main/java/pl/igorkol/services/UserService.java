@@ -50,11 +50,21 @@ public class UserService implements UserDetailsService {
     }
 
     public User saveUser(User user) {
+        if(user.getPassword()!=null && user.getPassword().length()>0){
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
+            user.setPassword(
+                    encoder.encode(user.getPassword())
+            );
+        } else {
+            userRepository.findByEmail(user.getEmail()).ifPresent(existingUser -> {
+                user.setPassword(existingUser.getPassword());
+            });
+        }
         return userRepository.save(user);
     }
 
     public static UserDto mapToUserDto(User user) {
-        return new UserDto(user.getEmail(), user.getManager(), user.getActive());
+        return new UserDto(user.getId(),user.getEmail(), user.getManager(), user.getActive());
     }
 
     public boolean deactivateUser(String userEmail) {

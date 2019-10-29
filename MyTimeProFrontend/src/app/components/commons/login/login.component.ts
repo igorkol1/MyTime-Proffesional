@@ -9,7 +9,7 @@ import {User} from '../../../models/user.model';
 })
 export class LoginComponent implements OnInit {
 
-  user = new User('', '');
+  user = new User();
 
   constructor(
     private authorizationService: AuthorizationService

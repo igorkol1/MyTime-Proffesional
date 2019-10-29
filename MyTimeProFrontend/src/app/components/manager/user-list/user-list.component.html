@@ -3,10 +3,10 @@
 
   <div>
     <div>
-      <i class="fas fa-user-plus" id="addUser"></i>
+      <i class="fas fa-user-plus" id="addUser" (click)="handleAddUser()"></i>
     </div>
     <div >
-      <i class="fas fa-sync" id="refresh"></i>
+      <i class="fas fa-sync" id="refresh" (click)="handleRefresh()"></i>
     </div>
   </div>
 
@@ -34,7 +34,9 @@
           {{user.active}}
         </td>
         <td>
-          Option
+          <div>
+            <i class="fas fa-user-edit" (click)="handleEditUser(user)"></i>
+          </div>
         </td>
       </tr>
       </tbody>

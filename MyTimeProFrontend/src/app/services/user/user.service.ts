@@ -36,4 +36,15 @@ export class UserService {
       }
     );
   }
+
+  public saveUser(user: User) {
+    this.http.post(API_URL + 'user/save', user).subscribe(
+      response => {
+        this.refresh();
+      },
+      error => {
+        console.warn(error);
+      }
+    );
+  }
 }
