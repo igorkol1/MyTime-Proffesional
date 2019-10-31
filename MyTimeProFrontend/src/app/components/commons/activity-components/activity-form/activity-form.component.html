@@ -1,0 +1,48 @@
+<div class="modal-header">
+  <h4 class="modal-title" *ngIf="newActivity">New Activity</h4>
+  <h4 class="modal-title" *ngIf="!newActivity">Edit Activity</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form id="activityForm" #activityForm="ngForm" (ngSubmit)="!activityForm.invalid && handleSave()">
+
+    <div class="form-group row">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Select Activity</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>Action - 1</button>
+          <button ngbDropdownItem>Another Action</button>
+          <button ngbDropdownItem>Something else is here</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+            <textarea [(ngModel)]="activity.description" name="description" type="text" class="form-control"
+                      id="description"
+                      placeholder="Enter description"></textarea>
+    </div>
+
+    <div class="form-group row">
+      <input type="text" ngbDatepicker #d="ngbDatepicker"/>
+      <button (click)="d.toggle()">Toggle</button>
+      <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+    </div>
+
+    <!--    <div class="form-group row">-->
+    <!--      <div class="custom-control custom-switch">-->
+    <!--        <input [(ngModel)]="project.active" class="custom-control-input" type="checkbox" id="isActive"-->
+    <!--               name="isManager">-->
+    <!--        <label class="custom-control-label" for="isActive">-->
+    <!--          Active-->
+    <!--        </label>-->
+    <!--      </div>-->
+    <!--    </div>div-->
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-light" (click)="handleSave()" [disabled]="activityForm.invalid">Save</button>
+  <button type="button" class="btn btn-light" (click)="handleCancel()">Cancel</button>
+</div>

@@ -20,6 +20,9 @@ import { NewUserFormComponent } from './components/manager/new-user-form/new-use
 import { ActivitiesDashboardComponent } from './components/manager/activities-dashboard/activities-dashboard.component';
 import { ProjectFormComponent } from './components/manager/project-form/project-form.component';
 import { UserActivitiesDashboardComponent } from './components/user/user-activities-dashboard/user-activities-dashboard.component';
+import { ActivityFormComponent } from './components/commons/activity-components/activity-form/activity-form.component';
+import { ActivityListComponent } from './components/commons/activity-components/activity-list/activity-list.component';
+import { UserActivityDailyComponent } from './components/user/user-activity-daily/user-activity-daily.component';
 
 @NgModule({
   declarations: [
@@ -36,11 +39,15 @@ import { UserActivitiesDashboardComponent } from './components/user/user-activit
     NewUserFormComponent,
     ActivitiesDashboardComponent,
     ProjectFormComponent,
-    UserActivitiesDashboardComponent
+    UserActivitiesDashboardComponent,
+    ActivityFormComponent,
+    ActivityListComponent,
+    UserActivityDailyComponent
   ],
   entryComponents: [
     NewUserFormComponent,
-    ProjectFormComponent
+    ProjectFormComponent,
+    ActivityFormComponent
   ],
   imports: [
     BrowserModule,
