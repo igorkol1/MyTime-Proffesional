@@ -26,4 +26,8 @@ export class UserActivitiesDashboardComponent implements OnInit {
   navigateToCalendarView() {
 
   }
+
+  navigateToNewActivity() {
+
+  }
 }

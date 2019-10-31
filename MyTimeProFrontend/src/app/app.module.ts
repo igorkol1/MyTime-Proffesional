@@ -23,6 +23,7 @@ import { UserActivitiesDashboardComponent } from './components/user/user-activit
 import { ActivityFormComponent } from './components/commons/activity-components/activity-form/activity-form.component';
 import { ActivityListComponent } from './components/commons/activity-components/activity-list/activity-list.component';
 import { UserActivityDailyComponent } from './components/user/user-activity-daily/user-activity-daily.component';
+import { UserActivityFormComponent } from './components/user/user-activity-form/user-activity-form.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { UserActivityDailyComponent } from './components/user/user-activity-dail
     UserActivitiesDashboardComponent,
     ActivityFormComponent,
     ActivityListComponent,
-    UserActivityDailyComponent
+    UserActivityDailyComponent,
+    UserActivityFormComponent
   ],
   entryComponents: [
     NewUserFormComponent,
