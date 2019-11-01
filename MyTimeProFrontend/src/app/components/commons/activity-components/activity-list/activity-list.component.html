@@ -1,7 +1,7 @@
 <div class="card listCard">
 
   <div>
-    <table *ngIf="activities.length>0 else noResult" class="table table-striped">
+    <table *ngIf="activities && activities.length>0 else noResult" class="table table-striped">
       <thead>
       <tr>
         <th scope="col">#</th>
@@ -31,6 +31,7 @@
         </td>
         <td>
           <i class="fas fa-folder-open" (click)="handleEditActivity(activity)"></i>
+          <i class="fas fa-trash" id="trashIcon" (click)="handleDelete(activity)"></i>
         </td>
       </tr>
       </tbody>

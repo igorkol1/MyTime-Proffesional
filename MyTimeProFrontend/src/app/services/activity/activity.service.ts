@@ -21,4 +21,8 @@ export class ActivityService {
   getActivitiesPerDayForUser(date: NgbDate) {
     return this.http.get(API_URL + 'activity/user/' + date.year + '/' + date.month + '/' + date.day);
   }
+
+  delete(activity: Activity) {
+    return this.http.post(API_URL + 'activity/delete/' + activity.id, null);
+  }
 }
