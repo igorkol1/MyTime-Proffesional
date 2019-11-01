@@ -1,6 +1,7 @@
 package pl.igorkol.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity(name = "activities")
@@ -16,14 +17,14 @@ public class Activity {
     @OneToOne
     private User user;
 
-    private LocalDateTime start;
+    private LocalDate start;
     private int duration;
     private String description;
 
     public Activity() {
     }
 
-    public Activity(Project project, User user, LocalDateTime start, int duration, String description) {
+    public Activity(Project project, User user, LocalDate start, int duration, String description) {
         this.project = project;
         this.user = user;
         this.start = start;
@@ -55,11 +56,11 @@ public class Activity {
         this.user = user;
     }
 
-    public LocalDateTime getStart() {
+    public LocalDate getStart() {
         return start;
     }
 
-    public void setStart(LocalDateTime start) {
+    public void setStart(LocalDate start) {
         this.start = start;
     }
 

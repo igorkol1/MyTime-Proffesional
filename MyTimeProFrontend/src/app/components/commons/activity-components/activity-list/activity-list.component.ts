@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Activity} from '../../../../models/activity.model';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ActivityFormComponent} from '../activity-form/activity-form.component';
 
 @Component({
   selector: 'app-activity-list',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActivityListComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  activities: Activity[] = [];
+
+  constructor(
+    private modalService: NgbModal,
+  ) {
+  }
 
   ngOnInit() {
   }
 
+  handleEditActivity(activity: Activity) {
+    const modalRef = this.modalService.open(ActivityFormComponent);
+    modalRef.componentInstance.newActivity = true;
+    modalRef.componentInstance.activity = activity;
+  }
 }

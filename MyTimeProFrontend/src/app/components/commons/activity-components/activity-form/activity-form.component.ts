@@ -38,7 +38,7 @@ export class ActivityFormComponent implements OnInit {
 
     if (this.newActivity) {
       let newDate = new Date();
-      this.rawDate = new NgbDate(newDate.getFullYear(), newDate.getMonth() + 1, newDate.getDay());
+      this.rawDate = new NgbDate(newDate.getFullYear(), newDate.getMonth() + 1, newDate.getDate());
     }
 
     this.projectService.getActiveProjects().subscribe(
@@ -67,9 +67,9 @@ export class ActivityFormComponent implements OnInit {
 
   formatProperDate() {
     let properDate = new Date();
-    properDate.setFullYear(this.rawDate.year);
-    properDate.setMonth(this.rawDate.month - 1);
-    properDate.setDate(this.rawDate.day);
+    properDate.setUTCFullYear(this.rawDate.year);
+    properDate.setUTCMonth(this.rawDate.month - 1);
+    properDate.setUTCDate(this.rawDate.day);
     return properDate;
   }
 }

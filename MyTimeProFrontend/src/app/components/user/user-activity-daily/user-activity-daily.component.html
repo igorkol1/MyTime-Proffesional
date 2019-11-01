@@ -1,5 +1,17 @@
-<p>user-activity-daily works!</p>
+<div class="card listMenuCard">
+  <div class="d-inline-flex">
+    <i class="far fa-plus-square" id="addActivity" (click)="handleAddActivity()"></i>
+  </div>
+  <div class="d-inline-flex">
+    <input type="text" class="form-control" ngbDatepicker #d="ngbDatepicker" placeholder="Select date" name="startDate"
+           [(ngModel)]="rawContextDate"
+           (ngModelChange)="onChange($event)"
+           readonly (click)="d.toggle()">
+  </div>
+  <div class="d-inline-flex align-self-end" id="refreshList">
+    <i class="fas fa-sync"(click)="handleRefresh()"></i>
+  </div>
+</div>
 
-<button class="btn" (click)="handleAddActivity()">Add Activity</button>
 
-<app-activity-list></app-activity-list>
+<app-activity-list [activities]="activityList"></app-activity-list>
