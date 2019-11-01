@@ -9,14 +9,10 @@
   <form id="activityForm" #activityForm="ngForm" (ngSubmit)="!activityForm.invalid && handleSave()">
 
     <div class="form-group row">
-      <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Select Activity</button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem>Action - 1</button>
-          <button ngbDropdownItem>Another Action</button>
-          <button ngbDropdownItem>Something else is here</button>
-        </div>
-      </div>
+      <label for="selectProject" class="text-muted">Select Project</label>
+      <select class="form-control" [(ngModel)]="activity.project" name="selectProject" id="selectProject">
+        <option *ngFor="let project of projectList" [ngValue]="project">{{project.name}}</option>
+      </select>
     </div>
 
     <div class="form-group row">
@@ -26,20 +22,17 @@
     </div>
 
     <div class="form-group row">
-      <input type="text" ngbDatepicker #d="ngbDatepicker"/>
-      <button (click)="d.toggle()">Toggle</button>
-      <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" ngbDatepicker #d="ngbDatepicker" placeholder="Select date" name="startDate"
+               [(ngModel)]="rawDate"
+               readonly (click)="d.toggle()">
+      </div>
     </div>
 
-    <!--    <div class="form-group row">-->
-    <!--      <div class="custom-control custom-switch">-->
-    <!--        <input [(ngModel)]="project.active" class="custom-control-input" type="checkbox" id="isActive"-->
-    <!--               name="isManager">-->
-    <!--        <label class="custom-control-label" for="isActive">-->
-    <!--          Active-->
-    <!--        </label>-->
-    <!--      </div>-->
-    <!--    </div>div-->
+    <div class="form-group row">
+      <input class="form-control" [(ngModel)]="activity.duration" name="duration" type="number" placeholder="Enter hours"/>
+    </div>
+
   </form>
 </div>
 <div class="modal-footer">
