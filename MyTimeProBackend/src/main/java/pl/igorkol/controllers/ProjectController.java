@@ -30,6 +30,11 @@ public class ProjectController {
         return projectService.getAllProjects();
     }
 
+    @GetMapping("all/active")
+    public List<ProjectDto> getAllActive(){
+        return projectService.getAllActiveProjects();
+    }
+
     @GetMapping("/{projectName}")
     public ResponseEntity<ProjectDto> getProject(@PathVariable String projectName) {
         ProjectDto projectDto = projectService.getProject(projectName.replace('_', ' '));

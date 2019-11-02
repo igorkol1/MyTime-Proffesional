@@ -55,4 +55,11 @@ public class ProjectService {
         }
         return false;
     }
+
+    public List<ProjectDto> getAllActiveProjects() {
+        return projectRepository.findAllByIsActiveIsTrue()
+                .stream()
+                .map(ProjectService::mapToProjectDto)
+                .collect(Collectors.toList());
+    }
 }

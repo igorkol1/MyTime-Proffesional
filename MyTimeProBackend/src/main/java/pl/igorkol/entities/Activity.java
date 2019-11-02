@@ -14,7 +14,7 @@ public class Activity {
     private Project project;
 
     @OneToOne
-    private User worker;
+    private User user;
 
     private LocalDateTime start;
     private int duration;
@@ -23,9 +23,9 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(Project project, User worker, LocalDateTime start, int duration, String description) {
+    public Activity(Project project, User user, LocalDateTime start, int duration, String description) {
         this.project = project;
-        this.worker = worker;
+        this.user = user;
         this.start = start;
         this.duration = duration;
         this.description = description;
@@ -47,12 +47,12 @@ public class Activity {
         this.project = project;
     }
 
-    public User getWorker() {
-        return worker;
+    public User getUser() {
+        return user;
     }
 
-    public void setWorker(User worker) {
-        this.worker = worker;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LocalDateTime getStart() {

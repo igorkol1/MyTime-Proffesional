@@ -3,7 +3,6 @@ package pl.igorkol.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.igorkol.dtos.ActivityDto;
-import pl.igorkol.dtos.UserDto;
 import pl.igorkol.entities.Activity;
 import pl.igorkol.entities.Project;
 import pl.igorkol.entities.User;
@@ -48,10 +47,10 @@ public class ActivityService {
     public Activity saveActivity(Activity activity) {
         Optional<Project> projectOptional = projectRepository.findByName(activity.getProject().getName());
         if (projectOptional.isPresent()) {
-            Optional<User> userOptional = userRepository.findByEmail(activity.getWorker().getEmail());
+            Optional<User> userOptional = userRepository.findByEmail(activity.getUser().getEmail());
             if (userOptional.isPresent()) {
                 activity.setProject(projectOptional.get());
-                activity.setWorker(userOptional.get());
+                activity.setUser(userOptional.get());
                 activityRepository.save(activity);
             }
         }
@@ -70,7 +69,7 @@ public class ActivityService {
     public static ActivityDto mapToActivityDto(Activity activity) {
         return new ActivityDto(activity.getId(),
                 ProjectService.mapToProjectDto(activity.getProject()),
-                UserService.mapToUserDto(activity.getWorker()),
+                UserService.mapToUserDto(activity.getUser()),
                 activity.getStart(),
                 activity.getDuration(),
                 activity.getDescription());
