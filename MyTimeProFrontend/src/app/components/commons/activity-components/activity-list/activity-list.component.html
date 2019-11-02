@@ -6,6 +6,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Project Name</th>
+        <th scope="col" *ngIf="showUser">User Name</th>
         <th scope="col">Description</th>
         <th scope="col">Date</th>
         <th scope="col">Duration</th>
@@ -19,6 +20,9 @@
         </th>
         <td>
           {{activity.project.name}}
+        </td>
+        <td *ngIf="showUser">
+          {{activity.worker.email}}
         </td>
         <td>
           {{activity.description}}

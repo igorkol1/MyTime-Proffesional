@@ -11,6 +11,7 @@ import {ActivitiesDashboardComponent} from './components/manager/activities-dash
 import {UserActivitiesDashboardComponent} from './components/user/user-activities-dashboard/user-activities-dashboard.component';
 import {UserActivityDailyComponent} from './components/user/user-activity-daily/user-activity-daily.component';
 import {ManagerUserActivitiesComponent} from './components/manager/manager-user-activities/manager-user-activities.component';
+import {ManagerProjectActivitiesComponent} from './components/manager/manager-project-activities/manager-project-activities.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'manager/report', component: ManagerReportDashboardComponent},
   {path: 'manager/activities', component: ActivitiesDashboardComponent},
   {path: 'manager/user/activities', component: ManagerUserActivitiesComponent},
+  {path: 'manager/project/activities', component: ManagerProjectActivitiesComponent},
   {path: 'user/dashboard', component: UserDashboardComponent},
   {path: 'user/activities', component: UserActivitiesDashboardComponent},
   {path: 'user/activities/daily', component: UserActivityDailyComponent},

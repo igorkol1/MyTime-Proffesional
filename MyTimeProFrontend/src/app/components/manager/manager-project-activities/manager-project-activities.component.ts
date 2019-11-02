@@ -1,35 +1,35 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../../../models/user.model';
-import {UserService} from '../../../services/user/user.service';
-import {Activity} from '../../../models/activity.model';
-import {DateUtils} from '../../../utils/date.utils';
 import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
+import {Activity} from '../../../models/activity.model';
+import {ProjectService} from '../../../services/project/project.service';
+import {Project} from '../../../models/project.model';
 import {ActivityService} from '../../../services/activity/activity.service';
+import {DateUtils} from '../../../utils/date.utils';
 
 @Component({
-  selector: 'app-manager-user-activities',
-  templateUrl: './manager-user-activities.component.html',
-  styleUrls: ['./manager-user-activities.component.scss']
+  selector: 'app-manager-project-activities',
+  templateUrl: './manager-project-activities.component.html',
+  styleUrls: ['./manager-project-activities.component.scss']
 })
-export class ManagerUserActivitiesComponent implements OnInit {
+export class ManagerProjectActivitiesComponent implements OnInit {
 
   private rawContextDate: NgbDate;
   private activityList: Activity[];
   private activityListError: string;
   private activityListLoading: boolean;
 
-  selectedUser: User;
+  selectedProject: Project;
 
   constructor(
-    private userService: UserService,
+    private projectService: ProjectService,
     private activityService: ActivityService
   ) {
   }
 
   ngOnInit() {
-    this.userService.refresh();
+    this.projectService.refresh();
     this.rawContextDate = DateUtils.formatToNGBDate(new Date());
-    this.selectedUser = this.userService.userList[0];
+    this.selectedProject= this.projectService.projectList[0];
     this.getActivity();
   }
 
@@ -42,10 +42,10 @@ export class ManagerUserActivitiesComponent implements OnInit {
   }
 
   getActivity() {
-    if (this.selectedUser != null) {
+    if (this.selectedProject != null) {
       this.activityListError = '';
       this.activityListLoading = true;
-      this.activityService.getActivitiesPerDayForSelectedUser(this.selectedUser, this.rawContextDate).subscribe(response => {
+      this.activityService.getActivitiesPerDayForSelectedProject(this.selectedProject, this.rawContextDate).subscribe(response => {
         this.activityList = <Activity[]>response;
         this.activityListLoading = false;
       }, error => {
@@ -54,4 +54,5 @@ export class ManagerUserActivitiesComponent implements OnInit {
       });
     }
   }
+
 }
