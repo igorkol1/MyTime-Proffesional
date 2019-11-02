@@ -14,6 +14,9 @@ export class ActivityListComponent implements OnInit {
   @Input()
   activities: Activity[] = [];
 
+  @Input()
+  editOption: boolean;
+
   @Output()
   refreshData: EventEmitter<void> = new EventEmitter<void>();
 

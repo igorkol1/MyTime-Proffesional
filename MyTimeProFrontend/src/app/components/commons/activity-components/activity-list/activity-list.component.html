@@ -30,7 +30,7 @@
           {{activity.duration}}
         </td>
         <td>
-          <i class="fas fa-folder-open" (click)="handleEditActivity(activity)"></i>
+          <i class="fas fa-folder-open" *ngIf="editOption" (click)="handleEditActivity(activity)"></i>
           <i class="fas fa-trash" id="trashIcon" (click)="handleDelete(activity)"></i>
         </td>
       </tr>

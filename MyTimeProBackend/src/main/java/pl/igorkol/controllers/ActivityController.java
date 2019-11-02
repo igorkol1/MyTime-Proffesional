@@ -47,10 +47,21 @@ public class ActivityController {
     public List<ActivityDto> getUserActivityPerDay(Principal principal,
                                                    @PathVariable int year,
                                                    @PathVariable int month,
-                                                   @PathVariable int day){
+                                                   @PathVariable int day) {
 
-        LocalDate date = LocalDate.of(year,month,day);
+        LocalDate date = LocalDate.of(year, month, day);
         return activityService.getAllActivitiesPerDayForUser(principal.getName(),
+                date);
+    }
+
+    @GetMapping("/{userEmail}/{year}/{month}/{day}")
+    public List<ActivityDto> getSelectedUserActivityPerDay(
+            @PathVariable String userEmail,
+            @PathVariable int year,
+            @PathVariable int month,
+            @PathVariable int day) {
+        LocalDate date = LocalDate.of(year, month, day);
+        return activityService.getAllActivitiesPerDayForUser(userEmail,
                 date);
     }
 

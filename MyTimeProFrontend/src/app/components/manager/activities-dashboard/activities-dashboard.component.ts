@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-activities-dashboard',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActivitiesDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -17,6 +20,6 @@ export class ActivitiesDashboardComponent implements OnInit {
   }
 
   navigateToUserActivities() {
-
+    this.router.navigate(['manager/user/activities']);
   }
 }

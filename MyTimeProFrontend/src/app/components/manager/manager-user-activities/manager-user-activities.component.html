@@ -1,6 +1,9 @@
 <div class="card listMenuCard">
   <div class="d-inline-flex">
-    <i class="far fa-plus-square" id="addActivity" (click)="handleAddActivity()"></i>
+    <select class="form-control" id="userSelect" [(ngModel)]="selectedUser" (ngModelChange)="onChange($event)">
+      <option selected ngValue="null">Choose user</option>
+      <option *ngFor="let user of userService.userList" [ngValue]="user">{{user.email}}</option>
+    </select>
   </div>
   <div class="d-inline-flex">
     <input type="text" class="form-control" ngbDatepicker #d="ngbDatepicker" placeholder="Select date" name="startDate"
@@ -15,5 +18,5 @@
 
 
 <app-activity-list [activities]="activityList"
-                   [editOption]="true"
-(refreshData)="handleRefresh()"></app-activity-list>
+                   [editOption]="false"
+                   (refreshData)="handleRefresh()"></app-activity-list>
