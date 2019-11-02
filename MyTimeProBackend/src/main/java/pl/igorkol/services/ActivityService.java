@@ -10,6 +10,9 @@ import pl.igorkol.repositories.ActivityRepository;
 import pl.igorkol.repositories.ProjectRepository;
 import pl.igorkol.repositories.UserRepository;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -75,4 +78,17 @@ public class ActivityService {
                 activity.getDescription());
     }
 
+    public List<ActivityDto> getAllActivitiesPerDayForUser(String userEmail, LocalDate date) {
+        Optional<User> optionalUser = userRepository.findByEmail(userEmail);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            if(user.getActive()){
+                return activityRepository.findAllByUserIdAndAndStart(user.getId(),date)
+                        .stream()
+                        .map(ActivityService::mapToActivityDto)
+                        .collect(Collectors.toList());
+            }
+        }
+        return new ArrayList<>();
+    }
 }

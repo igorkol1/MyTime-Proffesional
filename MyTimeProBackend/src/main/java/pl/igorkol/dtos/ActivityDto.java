@@ -1,5 +1,6 @@
 package pl.igorkol.dtos;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ActivityDto {
@@ -7,11 +8,11 @@ public class ActivityDto {
     private Long id;
     private ProjectDto project;
     private UserDto worker;
-    private LocalDateTime start;
+    private LocalDate start;
     private int duration;
     private String description;
 
-    public ActivityDto(Long id, ProjectDto project, UserDto worker, LocalDateTime start, int duration, String description) {
+    public ActivityDto(Long id, ProjectDto project, UserDto worker, LocalDate start, int duration, String description) {
         this.id = id;
         this.project = project;
         this.worker = worker;
@@ -32,7 +33,7 @@ public class ActivityDto {
         return worker;
     }
 
-    public LocalDateTime getStart() {
+    public LocalDate getStart() {
         return start;
     }
 

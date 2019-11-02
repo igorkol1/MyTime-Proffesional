@@ -10,6 +10,10 @@ import pl.igorkol.entities.Activity;
 import pl.igorkol.services.ActivityService;
 
 import java.net.URI;
+import java.security.Principal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -37,6 +41,28 @@ public class ActivityController {
         } else {
             return new ResponseEntity<ActivityDto>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/user/{year}/{month}/{day}")
+    public List<ActivityDto> getUserActivityPerDay(Principal principal,
+                                                   @PathVariable int year,
+                                                   @PathVariable int month,
+                                                   @PathVariable int day) {
+
+        LocalDate date = LocalDate.of(year, month, day);
+        return activityService.getAllActivitiesPerDayForUser(principal.getName(),
+                date);
+    }
+
+    @GetMapping("/{userEmail}/{year}/{month}/{day}")
+    public List<ActivityDto> getSelectedUserActivityPerDay(
+            @PathVariable String userEmail,
+            @PathVariable int year,
+            @PathVariable int month,
+            @PathVariable int day) {
+        LocalDate date = LocalDate.of(year, month, day);
+        return activityService.getAllActivitiesPerDayForUser(userEmail,
+                date);
     }
 
     @PostMapping("/save")

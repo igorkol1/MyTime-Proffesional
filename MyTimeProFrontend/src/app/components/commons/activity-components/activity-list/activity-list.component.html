@@ -1,1 +1,45 @@
-<p>activity-list works!</p>
+<div class="card listCard">
+
+  <div>
+    <table *ngIf="activities && activities.length>0 else noResult" class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Project Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Options</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let activity of activities">
+        <th>
+          {{activity.id}}
+        </th>
+        <td>
+          {{activity.project.name}}
+        </td>
+        <td>
+          {{activity.description}}
+        </td>
+        <td>
+          {{activity.start}}
+        </td>
+        <td>
+          {{activity.duration}}
+        </td>
+        <td>
+          <i class="fas fa-folder-open" *ngIf="editOption" (click)="handleEditActivity(activity)"></i>
+          <i class="fas fa-trash" id="trashIcon" (click)="handleDelete(activity)"></i>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noResult>
+    No result
+  </ng-template>
+
+</div>

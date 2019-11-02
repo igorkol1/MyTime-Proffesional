@@ -6,6 +6,7 @@ import {ProjectService} from '../../../../services/project/project.service';
 import {Project} from '../../../../models/project.model';
 import {AuthorizationService} from '../../../../services/authorization/authorization.service';
 import {User} from '../../../../models/user.model';
+import {DateUtils} from '../../../../utils/date.utils';
 
 @Component({
   selector: 'app-activity-form',
@@ -36,10 +37,16 @@ export class ActivityFormComponent implements OnInit {
     this.activity.user = new User();
     this.activity.user.email = this.authorizationService.authorizationStatus.email;
 
+    let date = new Date();
+
     if (this.newActivity) {
-      let newDate = new Date();
-      this.rawDate = new NgbDate(newDate.getFullYear(), newDate.getMonth() + 1, newDate.getDay());
+      date = new Date();
+    } else {
+      date = new Date(this.activity.start);
     }
+
+    this.rawDate = new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
+
 
     this.projectService.getActiveProjects().subscribe(
       response => {
@@ -67,9 +74,9 @@ export class ActivityFormComponent implements OnInit {
 
   formatProperDate() {
     let properDate = new Date();
-    properDate.setFullYear(this.rawDate.year);
-    properDate.setMonth(this.rawDate.month - 1);
-    properDate.setDate(this.rawDate.day);
+    properDate.setUTCFullYear(this.rawDate.year);
+    properDate.setUTCMonth(this.rawDate.month - 1);
+    properDate.setUTCDate(this.rawDate.day);
     return properDate;
   }
 }
