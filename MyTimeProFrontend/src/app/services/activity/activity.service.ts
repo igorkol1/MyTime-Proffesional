@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {API_URL} from '../../app.constans';
 import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import {User} from '../../models/user.model';
+import {Project} from '../../models/project.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,9 @@ export class ActivityService {
 
   delete(activity: Activity) {
     return this.http.post(API_URL + 'activity/delete/' + activity.id, null);
+  }
+
+  getActivitiesPerDayForSelectedProject(project: Project, date: NgbDate) {
+    return this.http.get(API_URL + 'activity/project/' + project.id + '/' + date.year + '/' + date.month + '/' + date.day);
   }
 }

@@ -17,6 +17,9 @@ export class ActivityListComponent implements OnInit {
   @Input()
   editOption: boolean;
 
+  @Input()
+  showUser: boolean;
+
   @Output()
   refreshData: EventEmitter<void> = new EventEmitter<void>();
 

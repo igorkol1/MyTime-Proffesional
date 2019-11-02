@@ -1,0 +1,23 @@
+<div class="card listMenuCard">
+  <div class="d-inline-flex">
+    <select class="form-control" id="userProject" [(ngModel)]="selectedProject" (ngModelChange)="onChange($event)">
+      <option selected ngValue="null">Choose project</option>
+      <option *ngFor="let project of projectService.projectList" [ngValue]="project">{{project.name}}</option>
+    </select>
+  </div>
+  <div class="d-inline-flex">
+    <input type="text" class="form-control" ngbDatepicker #d="ngbDatepicker" placeholder="Select date" name="startDate"
+           [(ngModel)]="rawContextDate"
+           (ngModelChange)="onChange($event)"
+           readonly (click)="d.toggle()">
+  </div>
+  <div class="d-inline-flex align-self-end" id="refreshList">
+    <i class="fas fa-sync"(click)="handleRefresh()"></i>
+  </div>
+</div>
+
+
+<app-activity-list [activities]="activityList"
+                   [editOption]="false"
+                   [showUser]="true"
+                   (refreshData)="handleRefresh()"></app-activity-list>

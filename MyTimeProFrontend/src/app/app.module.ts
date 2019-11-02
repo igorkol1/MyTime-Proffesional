@@ -24,6 +24,7 @@ import {ActivityFormComponent} from './components/commons/activity-components/ac
 import {ActivityListComponent} from './components/commons/activity-components/activity-list/activity-list.component';
 import {UserActivityDailyComponent} from './components/user/user-activity-daily/user-activity-daily.component';
 import { ManagerUserActivitiesComponent } from './components/manager/manager-user-activities/manager-user-activities.component';
+import { ManagerProjectActivitiesComponent } from './components/manager/manager-project-activities/manager-project-activities.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ManagerUserActivitiesComponent } from './components/manager/manager-use
     ActivityFormComponent,
     ActivityListComponent,
     UserActivityDailyComponent,
-    ManagerUserActivitiesComponent
+    ManagerUserActivitiesComponent,
+    ManagerProjectActivitiesComponent
   ],
   entryComponents: [
     NewUserFormComponent,

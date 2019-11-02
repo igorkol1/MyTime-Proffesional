@@ -80,14 +80,26 @@ public class ActivityService {
 
     public List<ActivityDto> getAllActivitiesPerDayForUser(String userEmail, LocalDate date) {
         Optional<User> optionalUser = userRepository.findByEmail(userEmail);
-        if(optionalUser.isPresent()){
+        if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if(user.getActive()){
-                return activityRepository.findAllByUserIdAndAndStart(user.getId(),date)
+            if (user.getActive()) {
+                return activityRepository.findAllByUserIdAndAndStart(user.getId(), date)
                         .stream()
                         .map(ActivityService::mapToActivityDto)
                         .collect(Collectors.toList());
             }
+        }
+        return new ArrayList<>();
+    }
+
+    public List<ActivityDto> getAllActivitiesPerDayForProject(long projectId, LocalDate date) {
+        Optional<Project> optionalProject = projectRepository.findById(projectId);
+        if (optionalProject.isPresent()) {
+            Project project = optionalProject.get();
+            return activityRepository.findAllByProjectIdAndAndStart(project.getId(), date)
+                    .stream()
+                    .map(ActivityService::mapToActivityDto)
+                    .collect(Collectors.toList());
         }
         return new ArrayList<>();
     }

@@ -12,4 +12,6 @@ public interface ActivityRepository extends JpaRepository<Activity,Long> {
 
     public List<Activity> findAllByUserIdAndAndStart(long userId, LocalDate date);
 
+    public List<Activity> findAllByProjectIdAndAndStart(long projectId, LocalDate date);
+
 }
