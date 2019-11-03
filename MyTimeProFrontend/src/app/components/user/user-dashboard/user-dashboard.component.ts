@@ -20,6 +20,6 @@ export class UserDashboardComponent implements OnInit {
   }
 
   navigateToReports() {
-    this.router.navigate(['manager/report']);
+    this.router.navigate(['user/report']);
   }
 }
