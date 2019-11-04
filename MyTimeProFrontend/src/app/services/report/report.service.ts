@@ -13,8 +13,8 @@ export class ReportService {
   ) {
   }
 
-  public getUserReport() {
-    const url = API_URL + 'report/test';
+  public getUserReport(month: number, year: number) {
+    const url = API_URL + 'report/user/' + month + '/' + year;
 
     const httpOptions = {
       'responseType': 'arraybuffer' as 'json'
