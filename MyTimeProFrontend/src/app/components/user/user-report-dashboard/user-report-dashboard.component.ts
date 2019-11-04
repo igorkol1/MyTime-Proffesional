@@ -20,9 +20,13 @@ export class UserReportDashboardComponent implements OnInit {
   }
 
   navigateToPDFReport() {
-    this.reportService.getUserReport().subscribe((response) => {
 
-      let file = new Blob([response], { type: 'application/pdf' });
+    //ToDo: Allow user to pick custom date
+    var today = new Date();
+
+    this.reportService.getUserReport(today.getMonth()+1, today.getFullYear()).subscribe((response) => {
+
+      let file = new Blob([response], {type: 'application/pdf'});
       var fileURL = URL.createObjectURL(file);
       window.open(fileURL);
     });
