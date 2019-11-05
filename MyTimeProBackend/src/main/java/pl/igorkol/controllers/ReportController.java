@@ -24,21 +24,6 @@ public class ReportController {
         this.reportService = reportService;
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<InputStreamResource> getTestReport(){
-        ByteArrayInputStream testReport = reportService.getTestReport();
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=testReport.pdf");
-
-        return ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(new InputStreamResource(testReport));
-    }
-
-
     @GetMapping("/user/{month}/{year}")
     public ResponseEntity<InputStreamResource> getUserMonthlyReport(Principal principal,
                                                                     @PathVariable int month,
@@ -46,6 +31,23 @@ public class ReportController {
         LocalDate startDate = LocalDate.of(year, month, 1);
         LocalDate endDate = LocalDate.of(year,month,startDate.lengthOfMonth());
         ByteArrayInputStream userReport = reportService.getUserMonthlyReport(principal.getName(),startDate,endDate);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=testReport.pdf");
+
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(userReport));
+    }
+
+    @GetMapping("/manager/{month}/{year}")
+    public ResponseEntity<InputStreamResource> getManagerMonthlyReport(Principal principal,
+                                                                       @PathVariable int month,
+                                                                       @PathVariable int year){
+        LocalDate startDate = LocalDate.of(year, month, 1);
+        LocalDate endDate = LocalDate.of(year,month,startDate.lengthOfMonth());
+        ByteArrayInputStream userReport = reportService.getManagerMonthlyReport(principal.getName(),startDate,endDate);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=testReport.pdf");
 
