@@ -13,8 +13,14 @@ export class ReportService {
   ) {
   }
 
-  public getUserReport(month: number, year: number) {
-    const url = API_URL + 'report/user/' + month + '/' + year;
+  public getReport(isManager: boolean, month: number, year: number) {
+    let url: string;
+
+    if (isManager) {
+      url = API_URL + 'report/manager/' + month + '/' + year;
+    } else {
+      url = API_URL + 'report/user/' + month + '/' + year;
+    }
 
     const httpOptions = {
       'responseType': 'arraybuffer' as 'json'

@@ -16,4 +16,6 @@ public interface ActivityRepository extends JpaRepository<Activity,Long> {
 
     public List<Activity> findAllByUserIdAndStartBetween(long userId,LocalDate startDate,LocalDate endDate);
 
+    public List<Activity> findAllByProjectIdAndStartBetween(long projectId,LocalDate startDate,LocalDate endDate);
+
 }

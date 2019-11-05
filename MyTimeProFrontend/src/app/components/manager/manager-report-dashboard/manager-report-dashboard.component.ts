@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ReportService} from '../../../services/report/report.service';
 
 @Component({
   selector: 'app-manager-report-dashboard',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagerReportDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private reportService: ReportService
+  ) {
+  }
 
   ngOnInit() {
   }
@@ -17,6 +21,13 @@ export class ManagerReportDashboardComponent implements OnInit {
   }
 
   navigateToPDFReport() {
+    //ToDo: Allow user to pick custom date
+    var today = new Date();
 
+    this.reportService.getReport(true, today.getMonth() + 1, today.getFullYear()).subscribe((response) => {
+      let file = new Blob([response], {type: 'application/pdf'});
+      var fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
   }
 }
