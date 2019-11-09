@@ -31,6 +31,12 @@ export class UserActivityDailyComponent implements OnInit {
   handleAddActivity() {
     const modalRef = this.modalService.open(ActivityFormComponent);
     modalRef.componentInstance.newActivity = true;
+
+    modalRef.result.then((result) => {
+      if (result === 'success') {
+        this.getActivity();
+      }
+    });
   }
 
   handleRefresh() {

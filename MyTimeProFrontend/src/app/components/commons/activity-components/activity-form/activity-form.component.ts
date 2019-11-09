@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbActiveModal, NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import {Activity} from '../../../../models/activity.model';
 import {ActivityService} from '../../../../services/activity/activity.service';
@@ -60,7 +60,7 @@ export class ActivityFormComponent implements OnInit {
 
     this.activityService.saveActivity(this.activity).subscribe(
       response => {
-        this.activeModal.dismiss();
+        this.activeModal.close('success');
       },
       error => {
         console.warn(error);

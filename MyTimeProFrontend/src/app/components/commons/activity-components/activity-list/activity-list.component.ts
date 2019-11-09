@@ -36,6 +36,12 @@ export class ActivityListComponent implements OnInit {
     const modalRef = this.modalService.open(ActivityFormComponent);
     modalRef.componentInstance.newActivity = false;
     modalRef.componentInstance.activity = activity;
+
+    modalRef.result.then((result) => {
+      if (result === 'success') {
+        this.refreshData.emit();
+      }
+    });
   }
 
   handleDelete(activity: Activity) {
