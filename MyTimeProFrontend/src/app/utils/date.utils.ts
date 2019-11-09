@@ -6,4 +6,12 @@ export class DateUtils {
     return new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
   }
 
+  static formatToDate(date: NgbDate) {
+    let newDate = new Date();
+    newDate.setUTCFullYear(date.year);
+    newDate.setUTCMonth(date.month - 1);
+    newDate.setUTCDate(date.day);
+    return newDate;
+  }
+
 }

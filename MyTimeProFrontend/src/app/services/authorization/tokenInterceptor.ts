@@ -32,7 +32,7 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   private handleUnauthorizedError() {
-    this.authorizationService.logout();
+    //this.authorizationService.logout();
   }
 
 }

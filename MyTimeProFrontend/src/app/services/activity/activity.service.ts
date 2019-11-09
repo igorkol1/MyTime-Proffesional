@@ -5,6 +5,7 @@ import {API_URL} from '../../app.constans';
 import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import {User} from '../../models/user.model';
 import {Project} from '../../models/project.model';
+import {CloneDayRequestModel} from '../../models/requests/cloneDayRequest.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,9 @@ export class ActivityService {
 
   getActivitiesPerDayForSelectedProject(project: Project, date: NgbDate) {
     return this.http.get(API_URL + 'activity/project/' + project.id + '/' + date.year + '/' + date.month + '/' + date.day);
+  }
+
+  cloneDay(cloneDayRequest: CloneDayRequestModel) {
+    return this.http.post(API_URL + 'activity/clone', cloneDayRequest);
   }
 }
