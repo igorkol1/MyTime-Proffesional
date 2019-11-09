@@ -21,7 +21,7 @@ export class UserActivitiesDashboardComponent implements OnInit {
   }
 
   cloneDay() {
-    const modalRef = this.modalService.open(UserActivityCloneComponent);
+    this.modalService.open(UserActivityCloneComponent);
   }
 
   navigateToDayView() {
@@ -29,7 +29,7 @@ export class UserActivitiesDashboardComponent implements OnInit {
   }
 
   navigateToCalendarView() {
-
+    this.router.navigate(['user/activities/calendar']);
   }
 
   navigateToNewActivity() {

@@ -1,0 +1,7 @@
+<div id="calendarDay" (click)="handleClick()">
+  {{date.getDate()}}<br>
+  <div *ngIf="activities">
+    {{activities.length}}
+  </div>
+
+</div>

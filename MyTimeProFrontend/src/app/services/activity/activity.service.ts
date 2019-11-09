@@ -40,4 +40,8 @@ export class ActivityService {
   cloneDay(cloneDayRequest: CloneDayRequestModel) {
     return this.http.post(API_URL + 'activity/clone', cloneDayRequest);
   }
+
+  getActivitiesForUserPerMonth(month: number, year: number) {
+    return this.http.get(API_URL + 'activity/user/calendar/' + year + '/' + month);
+  }
 }

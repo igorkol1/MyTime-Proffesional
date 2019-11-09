@@ -14,4 +14,13 @@ export class DateUtils {
     return newDate;
   }
 
+  static getDaysInMonth(month, year) {
+    var date = new Date(Date.UTC(year, month, 1));
+    var days = [];
+    while (date.getMonth() === month) {
+      days.push(new Date(date));
+      date.setDate(date.getDate() + 1);
+    }
+    return days;
+  }
 }
