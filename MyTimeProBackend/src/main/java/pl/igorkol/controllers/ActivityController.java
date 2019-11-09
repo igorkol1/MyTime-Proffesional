@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.igorkol.dtos.ActivityDto;
+import pl.igorkol.dtos.requests.CloneDayRequest;
 import pl.igorkol.entities.Activity;
 import pl.igorkol.services.ActivityService;
 
@@ -71,9 +72,9 @@ public class ActivityController {
             @PathVariable int year,
             @PathVariable int month,
             @PathVariable int day
-    ){
+    ) {
         LocalDate date = LocalDate.of(year, month, day);
-        return activityService.getAllActivitiesPerDayForProject(projectId,date);
+        return activityService.getAllActivitiesPerDayForProject(projectId, date);
     }
 
     @PostMapping("/save")
@@ -90,6 +91,12 @@ public class ActivityController {
     public ResponseEntity<Void> deleteActivity(@PathVariable long id) {
         boolean status = activityService.deleteActivity(id);
         return status ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
+    }
+
+    @PostMapping("/clone")
+    public ResponseEntity<Void> cloneDay(Principal principal, @RequestBody CloneDayRequest cloneDayRequest) {
+        activityService.clone(principal.getName(), cloneDayRequest);
+        return ResponseEntity.ok().build();
     }
 
 }

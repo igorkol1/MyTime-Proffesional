@@ -3,6 +3,7 @@ package pl.igorkol.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.igorkol.dtos.ActivityDto;
+import pl.igorkol.dtos.requests.CloneDayRequest;
 import pl.igorkol.entities.Activity;
 import pl.igorkol.entities.Project;
 import pl.igorkol.entities.User;
@@ -11,11 +12,13 @@ import pl.igorkol.repositories.ProjectRepository;
 import pl.igorkol.repositories.UserRepository;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class ActivityService {
@@ -102,5 +105,31 @@ public class ActivityService {
                     .collect(Collectors.toList());
         }
         return new ArrayList<>();
+    }
+
+    public void clone(String userEmail, CloneDayRequest cloneDayRequest) {
+        Optional<User> optionalUser = userRepository.findByEmail(userEmail);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            List<Activity> userActivities = activityRepository.findAllByUserIdAndAndStart(user.getId(), cloneDayRequest.getActivityDate());
+            userActivities.forEach(activity -> getDatesBetween(cloneDayRequest.getStartDate(), cloneDayRequest.getEndDate())
+                    .forEach(date -> cloneActivity(activity, date)));
+        }
+    }
+
+    private void cloneActivity(Activity activity, LocalDate date) {
+        Activity activityToClone = new Activity(activity.getProject(),
+                activity.getUser(),
+                date,
+                activity.getDuration(),
+                activity.getDescription());
+
+        activityRepository.save(activityToClone);
+    }
+
+    private List<LocalDate> getDatesBetween(LocalDate start, LocalDate end) {
+        return Stream.iterate(start, date -> date.plusDays(1))
+                .limit(ChronoUnit.DAYS.between(start, end))
+                .collect(Collectors.toList());
     }
 }

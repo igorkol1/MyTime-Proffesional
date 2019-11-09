@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {ActivityFormComponent} from '../../commons/activity-components/activity-form/activity-form.component';
 import {NgbDateAdapter, NgbDateNativeAdapter, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {UserActivityCloneComponent} from '../user-activity-clone/user-activity-clone.component';
 
 @Component({
   selector: 'app-user-activities-dashboard',
@@ -20,7 +21,7 @@ export class UserActivitiesDashboardComponent implements OnInit {
   }
 
   cloneDay() {
-
+    const modalRef = this.modalService.open(UserActivityCloneComponent);
   }
 
   navigateToDayView() {
