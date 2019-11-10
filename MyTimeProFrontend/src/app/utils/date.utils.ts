@@ -15,14 +15,11 @@ export class DateUtils {
   }
 
   static getDaysInMonth(month:number, year) {
-
     var date = new Date();
     date.setFullYear(year);
     date.setMonth(month);
     date.setDate(1);
     var days = [];
-    console.warn(date.getMonth());
-    console.warn(month);
     while (date.getMonth() === month) {
       days.push(new Date(date));
       date.setDate(date.getDate() + 1);
