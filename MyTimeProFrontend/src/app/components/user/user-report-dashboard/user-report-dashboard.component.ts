@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {API_URL} from '../../../app.constans';
 import {ReportService} from '../../../services/report/report.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ActivityFormComponent} from '../../commons/activity-components/activity-form/activity-form.component';
+import {UserWebReportComponent} from '../user-web-report/user-web-report.component';
 
 @Component({
   selector: 'app-user-report-dashboard',
@@ -12,7 +15,7 @@ export class UserReportDashboardComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private reportService: ReportService
+    private reportService: ReportService,
   ) {
   }
 
@@ -32,7 +35,7 @@ export class UserReportDashboardComponent implements OnInit {
     });
   }
 
-  navigateToEmailReport() {
-
+  navigateToWebReport() {
+    this.router.navigate(['user/report/web']);
   }
 }

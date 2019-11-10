@@ -30,6 +30,8 @@ import { UserActivityCloneComponent } from './components/user/user-activity-clon
 import { UserActivityCalendarComponent } from './components/user/user-activity-calendar/user-activity-calendar.component';
 import { CalendarDayComponent } from './components/commons/calendar/calendar-day/calendar-day.component';
 import { CalendarComponent } from './components/commons/calendar/calendar.component';
+import { UserWebReportComponent } from './components/user/user-web-report/user-web-report.component';
+import { UserReportComponent } from './components/user/user-web-report/user-report/user-report.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { CalendarComponent } from './components/commons/calendar/calendar.compon
     UserActivityCloneComponent,
     UserActivityCalendarComponent,
     CalendarDayComponent,
-    CalendarComponent
+    CalendarComponent,
+    UserWebReportComponent,
+    UserReportComponent
   ],
   entryComponents: [
     NewUserFormComponent,
