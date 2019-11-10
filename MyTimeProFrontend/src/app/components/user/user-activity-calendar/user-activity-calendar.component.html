@@ -1,0 +1,31 @@
+<div class="card listMenuCard">
+  <div class="d-inline-flex">
+    <i class="far fa-plus-square" id="addActivity" (click)="handleAddActivity()"></i>
+  </div>
+  <div class="d-inline-flex">
+    <div class="form-inline">
+      <div class="form-group">
+        <select class="form-control" id="monthSelect" [(ngModel)]="selectedMonth" (ngModelChange)="getActivities()">
+          <option *ngFor="let month of months" [ngValue]="month">{{month}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select class="form-control" id="yearSelect" [(ngModel)]="selectedYear" (ngModelChange)="getActivities()">
+          <option *ngFor="let year of years" [ngValue]="year">{{year}}</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+  <div class="d-inline-flex align-self-end" id="refreshList">
+    <i class="fas fa-sync"(click)="handleRefresh()"></i>
+  </div>
+</div>
+
+<div class="card listCard">
+  <app-calendar
+    [month]="selectedMonth"
+    [year]="selectedYear"
+    [activities]="activities"></app-calendar>
+</div>
+

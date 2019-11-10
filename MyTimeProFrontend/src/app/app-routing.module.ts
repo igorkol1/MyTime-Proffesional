@@ -13,6 +13,7 @@ import {UserActivityDailyComponent} from './components/user/user-activity-daily/
 import {ManagerUserActivitiesComponent} from './components/manager/manager-user-activities/manager-user-activities.component';
 import {ManagerProjectActivitiesComponent} from './components/manager/manager-project-activities/manager-project-activities.component';
 import {UserReportDashboardComponent} from './components/user/user-report-dashboard/user-report-dashboard.component';
+import {UserActivityCalendarComponent} from './components/user/user-activity-calendar/user-activity-calendar.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'user/dashboard', component: UserDashboardComponent},
   {path: 'user/activities', component: UserActivitiesDashboardComponent},
   {path: 'user/activities/daily', component: UserActivityDailyComponent},
+  {path: 'user/activities/calendar', component: UserActivityCalendarComponent},
   {path: 'user/report', component: UserReportDashboardComponent},
   {path: 'logout', component: LogoutComponent}
 ];

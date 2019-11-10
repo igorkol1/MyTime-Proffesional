@@ -13,6 +13,7 @@ import pl.igorkol.repositories.UserRepository;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -107,6 +108,21 @@ public class ActivityService {
         return new ArrayList<>();
     }
 
+    public List<ActivityDto> getAllActivitiesPerMonth(String userEmail, LocalDate date) {
+        Optional<User> optionalUser = userRepository.findByEmail(userEmail);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if (user.getActive()) {
+                LocalDate endDate = date.with(TemporalAdjusters.lastDayOfMonth());
+                return activityRepository.findAllByUserIdAndStartBetween(user.getId(), date, endDate)
+                        .stream()
+                        .map(ActivityService::mapToActivityDto)
+                        .collect(Collectors.toList());
+            }
+        }
+        return new ArrayList<>();
+    }
+
     public void clone(String userEmail, CloneDayRequest cloneDayRequest) {
         Optional<User> optionalUser = userRepository.findByEmail(userEmail);
         if (optionalUser.isPresent()) {
@@ -129,7 +145,7 @@ public class ActivityService {
 
     private List<LocalDate> getDatesBetween(LocalDate start, LocalDate end) {
         return Stream.iterate(start, date -> date.plusDays(1))
-                .limit(ChronoUnit.DAYS.between(start, end))
+                .limit(ChronoUnit.DAYS.between(start, end) + 1)
                 .collect(Collectors.toList());
     }
 }

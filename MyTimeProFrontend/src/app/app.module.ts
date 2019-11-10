@@ -27,6 +27,9 @@ import { ManagerUserActivitiesComponent } from './components/manager/manager-use
 import { ManagerProjectActivitiesComponent } from './components/manager/manager-project-activities/manager-project-activities.component';
 import { UserReportDashboardComponent } from './components/user/user-report-dashboard/user-report-dashboard.component';
 import { UserActivityCloneComponent } from './components/user/user-activity-clone/user-activity-clone.component';
+import { UserActivityCalendarComponent } from './components/user/user-activity-calendar/user-activity-calendar.component';
+import { CalendarDayComponent } from './components/commons/calendar/calendar-day/calendar-day.component';
+import { CalendarComponent } from './components/commons/calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { UserActivityCloneComponent } from './components/user/user-activity-clon
     ManagerUserActivitiesComponent,
     ManagerProjectActivitiesComponent,
     UserReportDashboardComponent,
-    UserActivityCloneComponent
+    UserActivityCloneComponent,
+    UserActivityCalendarComponent,
+    CalendarDayComponent,
+    CalendarComponent
   ],
   entryComponents: [
     NewUserFormComponent,

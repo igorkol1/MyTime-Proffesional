@@ -1,0 +1,8 @@
+<app-calendar-day *ngFor="let date of dates"
+[date] = date
+[activities]="findActivitiesForDay(date)"
+></app-calendar-day>
+
+
+
+
