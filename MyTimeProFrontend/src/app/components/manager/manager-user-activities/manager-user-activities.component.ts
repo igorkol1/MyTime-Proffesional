@@ -19,11 +19,13 @@ export class ManagerUserActivitiesComponent implements OnInit {
   private activityListLoading: boolean;
 
   selectedUser: User;
+  email;
 
   constructor(
     private userService: UserService,
     private activityService: ActivityService
   ) {
+    this.email = 'Select user...';
   }
 
   ngOnInit() {
@@ -53,5 +55,10 @@ export class ManagerUserActivitiesComponent implements OnInit {
         this.activityListLoading = false;
       });
     }
+  }
+
+  handleUserSelect($event: any) {
+    this.selectedUser = this.userService.userList.find(user => user.email === $event);
+    this.getActivity();
   }
 }

@@ -1,8 +1,8 @@
 <div class="card listMenuCard">
   <div class="d-inline-flex">
-    <select class="form-control" id="userSelect" [(ngModel)]="selectedUser" (ngModelChange)="onChange($event)">
-      <option selected ngValue="null">Choose user</option>
-      <option *ngFor="let user of userService.userList" [ngValue]="user">{{user.email}}</option>
+    <select class="form-control" id="userSelect" [(ngModel)]="email" (ngModelChange)="handleUserSelect($event)" name="userSelect">
+      <option *ngIf="!selectedUser" selected="selected" disabled>{{email}}</option>
+      <option *ngFor="let user of userService.userList" [ngValue]="user.email">{{user.email}}</option>
     </select>
   </div>
   <div class="d-inline-flex">

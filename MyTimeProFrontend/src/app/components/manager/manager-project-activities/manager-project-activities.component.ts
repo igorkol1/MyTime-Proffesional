@@ -19,17 +19,19 @@ export class ManagerProjectActivitiesComponent implements OnInit {
   private activityListLoading: boolean;
 
   selectedProject: Project;
+  selectedProjectName;
 
   constructor(
     private projectService: ProjectService,
     private activityService: ActivityService
   ) {
+    this.selectedProjectName = 'Select project';
   }
 
   ngOnInit() {
     this.projectService.refresh();
     this.rawContextDate = DateUtils.formatToNGBDate(new Date());
-    this.selectedProject= this.projectService.projectList[0];
+    this.selectedProject = this.projectService.projectList[0];
     this.getActivity();
   }
 
@@ -55,4 +57,8 @@ export class ManagerProjectActivitiesComponent implements OnInit {
     }
   }
 
+  handleProjectChange($event: any) {
+    this.selectedProject = this.projectService.projectList.find(project => project.name === $event);
+    this.getActivity();
+  }
 }

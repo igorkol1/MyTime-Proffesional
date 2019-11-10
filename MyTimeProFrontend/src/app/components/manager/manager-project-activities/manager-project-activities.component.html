@@ -1,8 +1,8 @@
 <div class="card listMenuCard">
   <div class="d-inline-flex">
-    <select class="form-control" id="userProject" [(ngModel)]="selectedProject" (ngModelChange)="onChange($event)">
-      <option selected ngValue="null">Choose project</option>
-      <option *ngFor="let project of projectService.projectList" [ngValue]="project">{{project.name}}</option>
+    <select class="form-control" id="userProject" [(ngModel)]="selectedProjectName" (ngModelChange)="handleProjectChange($event)">
+      <option *ngIf="!selectedProject" selected >{{selectedProjectName}}</option>
+      <option *ngFor="let project of projectService.projectList" [ngValue]="project.name">{{project.name}}</option>
     </select>
   </div>
   <div class="d-inline-flex">
