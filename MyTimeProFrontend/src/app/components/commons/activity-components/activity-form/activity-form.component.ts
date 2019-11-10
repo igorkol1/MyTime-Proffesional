@@ -21,6 +21,8 @@ export class ActivityFormComponent implements OnInit {
   @Input()
   activity: Activity = new Activity();
 
+  private selectedProject;
+
   private rawDate: NgbDate;
 
   private projectList: Project[] = [];
@@ -41,8 +43,10 @@ export class ActivityFormComponent implements OnInit {
 
     if (this.newActivity) {
       date = new Date();
+      this.selectedProject = 'Select project...';
     } else {
       date = new Date(this.activity.start);
+      this.selectedProject = this.activity.project.name;
     }
 
     this.rawDate = new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
@@ -78,5 +82,9 @@ export class ActivityFormComponent implements OnInit {
     properDate.setUTCMonth(this.rawDate.month - 1);
     properDate.setUTCDate(this.rawDate.day);
     return properDate;
+  }
+
+  handleProjectChange($event: any) {
+    this.activity.project = this.projectList.find(project => project.name === $event);
   }
 }

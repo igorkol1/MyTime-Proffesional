@@ -10,8 +10,9 @@
 
     <div class="form-group row">
       <label for="selectProject" class="text-muted">Select Project</label>
-      <select class="form-control" [(ngModel)]="activity.project" name="selectProject" id="selectProject">
-        <option *ngFor="let project of projectList" [ngValue]="project">{{project.name}}</option>
+      <select class="form-control" [(ngModel)]="selectedProject" (ngModelChange)="handleProjectChange($event)" name="selectProject" id="selectProject" >
+        <option *ngIf="newActivity" selected="selected" disabled>{{selectedProject}}</option>
+        <option *ngFor="let project of projectList" [ngValue]="project.name">{{project.name}}</option>
       </select>
     </div>
 
