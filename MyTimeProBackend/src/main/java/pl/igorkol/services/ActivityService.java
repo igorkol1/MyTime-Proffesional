@@ -1,5 +1,6 @@
 package pl.igorkol.services;
 
+import com.sun.org.apache.bcel.internal.generic.LUSHR;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.igorkol.dtos.ActivityDto;
@@ -121,6 +122,14 @@ public class ActivityService {
             }
         }
         return new ArrayList<>();
+    }
+
+    public List<ActivityDto> getAllActivitiesPerMonth(LocalDate date){
+        LocalDate endDate = date.with(TemporalAdjusters.lastDayOfMonth());
+        return activityRepository.findAllByStartBetween(date, endDate)
+                .stream()
+                .map(ActivityService::mapToActivityDto)
+                .collect(Collectors.toList());
     }
 
     public void clone(String userEmail, CloneDayRequest cloneDayRequest) {

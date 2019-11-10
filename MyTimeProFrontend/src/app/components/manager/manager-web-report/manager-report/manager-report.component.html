@@ -1,0 +1,82 @@
+<div class="card listCard">
+  <div *ngIf="activities && activities.length>0 else noActivities">
+    <p>Total reported hours: {{allHours}}</p>
+
+    <div class="container-fluid"
+         *ngIf="allHours>0 && !projectService.projectListLoading && !userService.userListLoading">
+      <div class="row">
+        <div class="col-lg-4">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Project</th>
+              <th scope="col">Number of hours</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let project of projectService.projectList">
+              <td>
+                {{project.name}}
+              </td>
+              <td>
+                {{countNumberOfHoursInProject(project)}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-lg-4">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">User</th>
+              <th scope="col">Number of hours</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of userService.userList">
+              <td>
+                {{user.email}}
+              </td>
+              <td>
+                {{countNumberOfHoursForUser(user)}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-lg-4">
+          <div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-light" (click)="handleProjectView()">Project View</button>
+              <button type="button" class="btn btn-light" (click)="handleUserView()">User View</button>
+            </div>
+          </div>
+          <div *ngIf="projectView && chartData">
+            <canvas baseChart
+                    [data]="chartData.projectHours"
+                    [labels]="chartData.labels"
+                    [chartType]="doughnutChartType">
+            </canvas>
+          </div>
+          <div *ngIf="userView">
+            <canvas baseChart
+                    [datasets]="lineChartDate.userDataSets"
+                    [labels]="lineChartDate.labels"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType">
+            </canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<ng-template #noActivities>
+  No activities found.
+</ng-template>
