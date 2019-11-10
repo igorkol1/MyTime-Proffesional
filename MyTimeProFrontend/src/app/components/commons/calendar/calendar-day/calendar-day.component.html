@@ -1,7 +1,11 @@
-<div id="calendarDay" (click)="handleClick()">
-  {{date.getDate()}}<br>
+<div id="calendarDay" [ngClass]="{'day-with-hours': numberOfHours>0, 'day-without-hours': numberOfHours<=0}"
+     (click)="handleClick()">
+  <span id="day">
+    {{date.getDate()}}
+  </span>
+
   <div *ngIf="activities">
-    {{activities.length}}
+    {{numberOfHours}}
   </div>
 
 </div>

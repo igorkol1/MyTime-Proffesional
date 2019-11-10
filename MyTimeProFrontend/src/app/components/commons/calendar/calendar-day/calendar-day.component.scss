@@ -4,3 +4,16 @@
   display: inline-block;
   border: 1px solid rgba(0,0,0,.125);
 }
+
+#day{
+  margin-left: 10px;
+  font-size: x-large;
+}
+
+.day-with-hours{
+  background-color: rgba(0, 255, 24, 0.51);
+}
+
+.day-without-hours{
+  background-color: rgba(255, 1, 0, 0.51);
+}

@@ -9,15 +9,27 @@ import {Activity} from '../../../models/activity.model';
 })
 export class CalendarComponent implements OnInit, OnChanges {
 
+
   @Input()
   activities: Activity[] = [];
 
-  dates = DateUtils.getDaysInMonth(10, 2019);
+  @Input()
+  month: number;
+
+  @Input()
+  year: number;
+
+  dates: Date[];
 
   constructor() {
+    const currentDate = new Date();
+    this.month = currentDate.getMonth();
+    this.year = currentDate.getFullYear();
+    this.dates = DateUtils.getDaysInMonth(this.month, this.year);
   }
 
   ngOnInit() {
+    this.dates = DateUtils.getDaysInMonth(this.month, this.year);
   }
 
   findActivitiesForDay(date: Date): Activity[] {
@@ -26,15 +38,22 @@ export class CalendarComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.warn(this.activities.length);
-  }
-
   private isActivityForDate(activity: Activity, date: Date) {
-    let str: any = activity.start;
-    let dateStr: any = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    const str: any = activity.start;
+    const dateStr: any = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + this.pad(date.getDate().toString());
 
     return str === dateStr;
+  }
+
+  private pad(str: string) {
+    while (str.length < 2) {
+      str = '0' + str;
+    }
+    return str;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.dates = DateUtils.getDaysInMonth(this.month - 1, this.year);
   }
 
 }
