@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ReportService} from '../../../services/report/report.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-manager-report-dashboard',
@@ -9,15 +10,16 @@ import {ReportService} from '../../../services/report/report.service';
 export class ManagerReportDashboardComponent implements OnInit {
 
   constructor(
-    private reportService: ReportService
+    private reportService: ReportService,
+    private router: Router
   ) {
   }
 
   ngOnInit() {
   }
 
-  navigateToEmailReport() {
-
+  navigateToWebReport() {
+    this.router.navigate(['manager/report/web']);
   }
 
   navigateToPDFReport() {

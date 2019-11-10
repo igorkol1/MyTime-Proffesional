@@ -33,6 +33,8 @@ import { CalendarComponent } from './components/commons/calendar/calendar.compon
 import { UserWebReportComponent } from './components/user/user-web-report/user-web-report.component';
 import { UserReportComponent } from './components/user/user-web-report/user-report/user-report.component';
 import {ChartsModule} from 'ng2-charts';
+import { ManagerWebReportComponent } from './components/manager/manager-web-report/manager-web-report.component';
+import { ManagerReportComponent } from './components/manager/manager-web-report/manager-report/manager-report.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import {ChartsModule} from 'ng2-charts';
     CalendarDayComponent,
     CalendarComponent,
     UserWebReportComponent,
-    UserReportComponent
+    UserReportComponent,
+    ManagerWebReportComponent,
+    ManagerReportComponent
   ],
   entryComponents: [
     NewUserFormComponent,

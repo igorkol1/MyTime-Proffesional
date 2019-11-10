@@ -15,10 +15,6 @@ export class UserReportComponent implements OnInit, OnChanges {
 
   public chartData: any;
 
-  public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public doughnutChartData: MultiDataSet = [
-    [350, 450, 100]
-  ];
   public doughnutChartType: ChartType = 'doughnut';
 
   @Input()

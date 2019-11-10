@@ -7,6 +7,7 @@ export class Activity {
     public id?: number,
     public project?: Project,
     public user?: User,
+    public worker?: User,
     public start?: Date,
     public duration?: number,
     public description?: string

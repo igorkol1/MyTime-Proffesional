@@ -15,6 +15,7 @@ import {ManagerProjectActivitiesComponent} from './components/manager/manager-pr
 import {UserReportDashboardComponent} from './components/user/user-report-dashboard/user-report-dashboard.component';
 import {UserActivityCalendarComponent} from './components/user/user-activity-calendar/user-activity-calendar.component';
 import {UserWebReportComponent} from './components/user/user-web-report/user-web-report.component';
+import {ManagerWebReportComponent} from './components/manager/manager-web-report/manager-web-report.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'manager/user/list', component: UserListComponent},
   {path: 'manager/project/list', component: ProjectListComponent},
   {path: 'manager/report', component: ManagerReportDashboardComponent},
+  {path: 'manager/report/web', component: ManagerWebReportComponent},
   {path: 'manager/activities', component: ActivitiesDashboardComponent},
   {path: 'manager/user/activities', component: ManagerUserActivitiesComponent},
   {path: 'manager/project/activities', component: ManagerProjectActivitiesComponent},

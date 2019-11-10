@@ -44,4 +44,8 @@ export class ActivityService {
   getActivitiesForUserPerMonth(month: number, year: number) {
     return this.http.get(API_URL + 'activity/user/calendar/' + year + '/' + month);
   }
+
+  getActivitiesForMonth(month: number, year: number) {
+    return this.http.get(API_URL + 'activity/project/' + year + '/' + month);
+  }
 }

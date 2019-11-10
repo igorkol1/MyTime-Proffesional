@@ -85,6 +85,13 @@ public class ActivityController {
         return activityService.getAllActivitiesPerMonth(principal.getName(),date);
     }
 
+    @GetMapping("/project/{year}/{month}")
+    public List<ActivityDto> getProjectActivitiesMonthly(@PathVariable int year,
+                                                         @PathVariable int month){
+        LocalDate date = LocalDate.of(year,month,1);
+        return activityService.getAllActivitiesPerMonth(date);
+    }
+
     @PostMapping("/save")
     public ResponseEntity<Void> saveActivity(@RequestBody Activity activity) {
         activityService.saveActivity(activity);
