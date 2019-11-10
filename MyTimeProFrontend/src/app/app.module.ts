@@ -32,6 +32,7 @@ import { CalendarDayComponent } from './components/commons/calendar/calendar-day
 import { CalendarComponent } from './components/commons/calendar/calendar.component';
 import { UserWebReportComponent } from './components/user/user-web-report/user-web-report.component';
 import { UserReportComponent } from './components/user/user-web-report/user-report/user-report.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { UserReportComponent } from './components/user/user-web-report/user-repo
     HttpClientModule,
     FormsModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

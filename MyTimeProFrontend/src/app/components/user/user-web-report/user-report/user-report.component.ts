@@ -2,6 +2,8 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {Activity} from '../../../../models/activity.model';
 import {ProjectService} from '../../../../services/project/project.service';
 import {Project} from '../../../../models/project.model';
+import {Label, MultiDataSet} from 'ng2-charts';
+import {ChartType} from 'chart.js';
 
 @Component({
   selector: 'app-user-report',
@@ -9,6 +11,15 @@ import {Project} from '../../../../models/project.model';
   styleUrls: ['./user-report.component.scss']
 })
 export class UserReportComponent implements OnInit, OnChanges {
+
+
+  public chartData: any;
+
+  public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  public doughnutChartData: MultiDataSet = [
+    [350, 450, 100]
+  ];
+  public doughnutChartType: ChartType = 'doughnut';
 
   @Input()
   activities: Activity[];
@@ -22,14 +33,17 @@ export class UserReportComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.countNumberOfHours();
     this.projectService.refresh();
+    this.generateChartDate();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.countNumberOfHours();
     this.projectService.refresh();
+    this.generateChartDate();
   }
 
   countNumberOfHours() {
+    this.totalReportedHours = 0;
     this.activities.forEach(activities => this.totalReportedHours += activities.duration);
   }
 
@@ -38,5 +52,15 @@ export class UserReportComponent implements OnInit, OnChanges {
     let numberOfHours = 0;
     activitiesInProject.forEach(activities => numberOfHours += activities.duration);
     return numberOfHours;
+  }
+
+  generateChartDate() {
+    let labels: Label[] = [];
+    let projectHours: number[] = [];
+    this.projectService.projectList.forEach(project => {
+      labels.push(project.name);
+      projectHours.push(this.countNumberOfHoursInProject(project));
+    });
+    this.chartData = {labels, projectHours};
   }
 }

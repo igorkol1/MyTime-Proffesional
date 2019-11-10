@@ -2,29 +2,40 @@
   <div *ngIf="activities && activities.length>0 else noActivities">
     <p>Total reported hours: {{totalReportedHours}}</p>
 
-    <div *ngIf="totalReportedHours>0 && !projectService.projectListLoading">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">Project</th>
-          <th scope="col">Number of hours</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let project of projectService.projectList">
-          <td>
-            {{project.name}}
-          </td>
-          <td>
-            {{countNumberOfHoursInProject(project)}}
-          </td>
-<!--          <td>-->
-<!--            <i class="fas fa-folder-open" (click)="handleEditProject(project)"></i>-->
-<!--          </td>-->
-        </tr>
-        </tbody>
-      </table>
+    <div class="container-fluid" *ngIf="totalReportedHours>0 && !projectService.projectListLoading">
+      <div class="row">
+        <div class="col-lg-6">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Project</th>
+              <th scope="col">Number of hours</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let project of projectService.projectList">
+              <td>
+                {{project.name}}
+              </td>
+              <td>
+                {{countNumberOfHoursInProject(project)}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-lg-6">
+          <canvas baseChart
+                  [data]="chartData.projectHours"
+                  [labels]="chartData.labels"
+                  [chartType]="doughnutChartType">
+          </canvas>
+        </div>
+      </div>
+
     </div>
+
+
 
   </div>
 </div>
