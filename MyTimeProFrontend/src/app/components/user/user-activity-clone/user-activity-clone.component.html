@@ -5,36 +5,44 @@
   </button>
 </div>
 <div class="modal-body">
-  <form id="cloneDayForm" #cloneDayForm="ngForm" (ngSubmit)="!cloneDayForm.invalid && handleSave()">
+  <form id="cloneDayForm" #cloneDayForm="ngForm" (ngSubmit)="!cloneDayForm.invalid && handleClone()">
 
     <div class="form-group row">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" ngbDatepicker #activityDate="ngbDatepicker" placeholder="Select activity date" name="activityDate"
+        <input type="text" class="form-control" ngbDatepicker #activityDate="ngbDatepicker"
+               placeholder="Select activity date" name="activityDate"
                [(ngModel)]="rawActivityDate"
-               readonly (click)="activityDate.toggle()">
+               readonly (click)="activityDate.toggle()"
+               required>
       </div>
     </div>
 
     <div class="form-group row">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" ngbDatepicker #startDate="ngbDatepicker" placeholder="Select start date" name="startDate"
+        <input type="text" class="form-control" ngbDatepicker #startDate="ngbDatepicker" placeholder="Select start date"
+               name="startDate"
                [(ngModel)]="rawStartDate"
-               readonly (click)="startDate.toggle()">
+               readonly (click)="startDate.toggle()"
+               required [ngClass]="{'is-invalid': !isDatesCorrect()}">
       </div>
     </div>
 
     <div class="form-group row">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" ngbDatepicker #endDate="ngbDatepicker" placeholder="Select end date" name="endDate"
+        <input type="text" class="form-control" ngbDatepicker #endDate="ngbDatepicker" placeholder="Select end date"
+               name="endDate"
                [(ngModel)]="rawEndDate"
-               readonly (click)="endDate.toggle()">
+               readonly (click)="endDate.toggle()"
+               required [ngClass]="{'is-invalid': !isDatesCorrect()}">
       </div>
     </div>
 
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-light" (click)="handleClone()" [disabled]="cloneDayForm.invalid">Clone</button>
+  <button type="button" class="btn btn-light" (click)="handleClone()"
+          [disabled]="cloneDayForm.invalid || !isDatesCorrect()">Clone
+  </button>
   <button type="button" class="btn btn-light" (click)="handleCancel()">Cancel</button>
 </div>
 

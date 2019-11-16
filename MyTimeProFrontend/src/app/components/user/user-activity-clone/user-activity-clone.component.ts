@@ -46,4 +46,18 @@ export class UserActivityCloneComponent implements OnInit {
   handleCancel() {
     this.activeModal.dismiss();
   }
+
+  isDatesCorrect() {
+    if (this.rawStartDate && this.rawEndDate) {
+      if (this.rawStartDate.year <= this.rawEndDate.year) {
+        if (this.rawStartDate.month <= this.rawEndDate.month) {
+          if (this.rawStartDate.day <= this.rawEndDate.day) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+    return true;
+  }
 }

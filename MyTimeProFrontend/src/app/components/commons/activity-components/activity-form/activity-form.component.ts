@@ -87,4 +87,11 @@ export class ActivityFormComponent implements OnInit {
   handleProjectChange($event: any) {
     this.activity.project = this.projectList.find(project => project.name === $event);
   }
+
+  isSelectedProjectValid() {
+    if (this.projectList && this.activity.project) {
+      return this.projectList.findIndex(project => project.id === this.activity.project.id) !== -1;
+    }
+    return false;
+  }
 }
