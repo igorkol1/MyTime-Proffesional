@@ -6,10 +6,10 @@
   </button>
 </div>
 <div class="modal-body">
-  <form id="userForm" #userForm = "ngForm" (ngSubmit)="!userForm.invalid && handleSave()">
+  <form id="userForm" #userForm="ngForm" (ngSubmit)="!userForm.invalid && handleSave()">
     <div class="form-group row">
       <input [(ngModel)]="user.email" name="email" type="email" class="form-control" id="exampleInputEmail1"
-             placeholder="Enter email" required="required">
+             placeholder="Enter email" required email>
     </div>
     <div class="form-group row">
       <div *ngIf="!newUser" class="custom-control custom-switch">
@@ -19,11 +19,14 @@
       </div>
     </div>
     <div class="form-group row" *ngIf="newUser || changePassword">
-      <input [(ngModel)]="user.password" name="password" type="password" class="form-control" placeholder="Password">
+      <input [(ngModel)]="user.password" name="password" type="password" class="form-control"
+             placeholder="Password" required
+             [ngClass]="{'is-invalid': user.password!==confirmPassword}">
     </div>
     <div class="form-group row" *ngIf="newUser || changePassword">
-      <input [(ngModel)]="confirmPassword" name="password" type="password" class="form-control"
-             placeholder="Confirm Password">
+      <input [(ngModel)]="confirmPassword" name="confirmPassword" type="password" class="form-control"
+             placeholder="Confirm Password" required
+             [ngClass]="{'is-invalid': user.password!==confirmPassword}">
     </div>
     <div class="form-group row">
       <div class="custom-control custom-switch">
