@@ -117,9 +117,15 @@ public class ReportService {
                     cell.setPaddingRight(5);
                     table.addCell(cell);
 
-                    cell = new PdfPCell(new Phrase(String.valueOf(activity.getDescription())));
+                    String description = activity.getDescription();
+
+                    if (description == null) {
+                        description = "-";
+                    }
+
+                    cell = new PdfPCell(new Phrase(description));
                     cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                    cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
                     cell.setPaddingRight(5);
                     table.addCell(cell);
                 }
@@ -197,7 +203,7 @@ public class ReportService {
                 hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(hcell);
 
-                for (Project project:projects) {
+                for (Project project : projects) {
 
                     PdfPCell cell;
 
@@ -212,7 +218,7 @@ public class ReportService {
                     cell.setHorizontalAlignment(Element.ALIGN_LEFT);
                     table.addCell(cell);
 
-                    int hours = countAllHours(project,startDate,endDate);
+                    int hours = countAllHours(project, startDate, endDate);
 
                     cell = new PdfPCell(new Phrase(String.valueOf(hours)));
                     cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -220,7 +226,7 @@ public class ReportService {
                     cell.setPaddingRight(5);
                     table.addCell(cell);
 
-                    hoursSum+=hours;
+                    hoursSum += hours;
 
                 }
 
@@ -259,7 +265,7 @@ public class ReportService {
         return activities.stream().mapToInt(Activity::getDuration).sum();
     }
 
-    private int countAllHours(Project project,LocalDate startDate, LocalDate endDate){
+    private int countAllHours(Project project, LocalDate startDate, LocalDate endDate) {
         List<Activity> activityList = activityRepository.findAllByProjectIdAndStartBetween(
                 project.getId(),
                 startDate,
