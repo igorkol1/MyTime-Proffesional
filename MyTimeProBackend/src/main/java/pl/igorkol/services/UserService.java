@@ -85,7 +85,7 @@ public class UserService implements UserDetailsService {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             User user = userOptional.get();
             if(encoder.matches(unauthorizedUser.getPassword(), user.getPassword())){
-                loginResponse.setAuthorize(true);
+                loginResponse.setAuthorize(user.getActive());
                 loginResponse.setManager(user.getManager());
             }
         }
