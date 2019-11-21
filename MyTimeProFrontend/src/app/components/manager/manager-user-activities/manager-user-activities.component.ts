@@ -25,13 +25,14 @@ export class ManagerUserActivitiesComponent implements OnInit {
     private userService: UserService,
     private activityService: ActivityService
   ) {
-    this.email = 'Select user...';
+    this.setEmail();
   }
 
   ngOnInit() {
     this.userService.refresh();
     this.rawContextDate = DateUtils.formatToNGBDate(new Date());
     this.selectedUser = this.userService.userList[0];
+    this.setEmail();
     this.getActivity();
   }
 
@@ -60,5 +61,13 @@ export class ManagerUserActivitiesComponent implements OnInit {
   handleUserSelect($event: any) {
     this.selectedUser = this.userService.userList.find(user => user.email === $event);
     this.getActivity();
+  }
+
+  setEmail() {
+    if (this.selectedUser != null) {
+      this.email = this.selectedUser.email;
+    } else {
+      this.email = 'Select user...';
+    }
   }
 }
