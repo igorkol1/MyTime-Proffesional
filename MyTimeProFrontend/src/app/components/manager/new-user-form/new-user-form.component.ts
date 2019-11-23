@@ -31,7 +31,7 @@ export class NewUserFormComponent implements OnInit {
 
   handleSave() {
 
-    if (!this.changePassword) {
+    if (!(this.newUser || this.changePassword)) {
       this.user.password = '';
     }
 
